@@ -3,5 +3,7 @@ temp_audio.wav
 *.tmp
 .env
 /*.mp4
+*.png
+__pycache__/
 !videos/
 !videos/*.mp4

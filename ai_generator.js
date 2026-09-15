@@ -35,7 +35,7 @@ async function generateNewAlgorithmWithPollinations(history = []) {
   }
 
   const prompt = isThree ? `You are a master creative technologist and 3D WebGL artist in Three.js and JavaScript.
-Create an impressive, jaw-dropping 3D WebGL animation in Three.js on the theme: "${selectedTheme}".
+Create an impressive, jaw-dropping, FAST-MOVING 3D WebGL animation in Three.js on the theme: "${selectedTheme}".
 
 Requirements:
 1. Return ONLY a valid JSON object (no markdown wrapper, no backticks, no commentary).
@@ -46,10 +46,10 @@ Requirements:
    - "caption": viral Instagram/Facebook caption with 5-8 hashtags and call to follow @kreggsjs
    - "isThreeJS": true
    - "code": a clean, beautifully formatted JavaScript function string representing the code (15-22 lines maximum, lines under 55 characters so they fit the IDE without horizontal wrapping)
-   - "initThreeString": "(function(THREE, scene, camera, renderer) { while(scene.children.length>0) scene.remove(scene.children[0]); camera.position.set(0,0,5); /* add glowing meshes, wireframes, or points */ })"
-   - "renderThreeString": "(function(THREE, scene, camera, renderer, t) { /* animate rotations, scales, colors based on t */ renderer.render(scene, camera); })"`
+   - "initThreeString": "(function(THREE, scene, camera, renderer) { while(scene.children.length>0) scene.remove(scene.children[0]); camera.position.set(0,0,5); /* add glowing wireframes, geometries, torus, points, lights */ })"
+   - "renderThreeString": "(function(THREE, scene, camera, renderer, t) { /* MUST HAVE STRONG, OBVIOUS VISUAL MOTION: continuous rapid rotation (e.g. rotation.x = t * 1.5; rotation.y = t * 2.0), pulsating scales (e.g. 1 + Math.sin(t*4)*0.3), or dynamic color wave shifts so the animation is clearly alive and moving! NEVER static */ renderer.render(scene, camera); })"`
   : `You are a master creative technologist and generative artist in JavaScript.
-Create an impressive, high-visual-quality HTML5 Canvas 2D animation on the theme: "${selectedTheme}".
+Create an impressive, high-speed, dynamic HTML5 Canvas 2D animation on the theme: "${selectedTheme}".
 
 Requirements:
 1. Return ONLY a valid JSON object (no markdown wrapper, no backticks, no commentary).
@@ -65,7 +65,8 @@ Requirements:
      - "width" is canvas width (984)
      - "height" is canvas height (784)
      - "t" is elapsed time in seconds (running smoothly at 60 FPS)
-     - Must clear canvas with a dark neon aesthetic background (e.g. '#070614' or 'rgba(7, 6, 20, 0.2)' for motion blur trails)
+     - Must clear canvas with a dark neon aesthetic background (e.g. '#070614' or 'rgba(7, 6, 20, 0.25)' for motion blur trails)
+     - Must have ACTIVE, RAPID, DYNAMIC movement (spinning geometry, orbiting particles, waving fields, pulsing radii).
      - Must draw glowing neon strokes, particles, geometry, or vectors
      - Must look fluid, intricate, and jaw-dropping.`;
 
