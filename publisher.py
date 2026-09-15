@@ -10,25 +10,25 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
 # Target Credentials
-FB_PAGE_NAME = "Kreggsjs"
-FB_PAGE_ID = "835956572945563"
-IG_USER_ID = "17841461793148389"
-GH_REPO_NAME = "gal-gadot-goddess/krg-js"
+FB_PAGE_NAME = os.environ.get("FACEBOOK_PAGE_NAME", "Kreggsjs")
+FB_PAGE_ID = os.environ.get("FACEBOOK_PAGE_ID", "835956572945563")
+IG_USER_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "17841461793148389")
+GH_REPO_NAME = os.environ.get("GITHUB_REPOSITORY", "gal-gadot-goddess/krg-js")
 
 def get_page_access_token():
+    token = os.environ.get('FACEBOOK_ACCESS_TOKEN')
+    if token:
+        return token
     user_token = os.environ.get('META_LONG_LIVED_ACCESS_TOKEN')
-    if not user_token:
-        raise ValueError("META_LONG_LIVED_ACCESS_TOKEN not set in environment variables")
-    
-    url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}?fields=access_token&access_token={user_token}"
-    resp = requests.get(url, timeout=20)
-    if resp.status_code == 200:
-        token = resp.json().get('access_token')
-        if token:
-            return token
-    
-    print("[Publisher] Warning: Specific page token not found, falling back to user token")
-    return user_token
+    if user_token:
+        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}?fields=access_token&access_token={user_token}"
+        resp = requests.get(url, timeout=20)
+        if resp.status_code == 200:
+            p_token = resp.json().get('access_token')
+            if p_token:
+                return p_token
+        return user_token
+    raise ValueError("Neither FACEBOOK_ACCESS_TOKEN nor META_LONG_LIVED_ACCESS_TOKEN is set")
 
 def upload_to_github_raw(local_video_path, repo_dir=None):
     if not repo_dir:
@@ -48,8 +48,8 @@ def upload_to_github_raw(local_video_path, repo_dir=None):
     subprocess.run(["git", "add", f"videos/{vid_stem}"], cwd=repo_dir, check=False)
     subprocess.run(["git", "commit", "-m", f"Add reel {vid_stem} [skip ci]"], cwd=repo_dir, check=False)
 
-    gh_pat = os.environ.get("GH_PAT")
-    push_target = f"https://x-access-token:{gh_pat}@github.com/{GH_REPO_NAME}.git" if gh_pat else "origin"
+    gh_token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_PAT")
+    push_target = f"https://x-access-token:{gh_token}@github.com/{GH_REPO_NAME}.git" if gh_token else "origin"
 
     subprocess.run(["git", "pull", "--rebase", push_target, "main"], cwd=repo_dir, check=False)
 
