@@ -30,8 +30,10 @@ def get_page_access_token():
     print("[Publisher] Warning: Specific page token not found, falling back to user token")
     return user_token
 
-def upload_to_github_raw(local_video_path, repo_dir="C:/Users/kreg9/krg-js"):
-    print("\n[Publisher] Step 1: Committing video to GitHub for ultra-fast CDN hosting...")
+def upload_to_github_raw(local_video_path, repo_dir=None):
+    if not repo_dir:
+        repo_dir = str(Path(__file__).parent.resolve())
+    print(f"\n[Publisher] Step 1: Committing video to GitHub for ultra-fast CDN hosting (repo_dir={repo_dir})...")
     vid_stem = f"reel_{uuid.uuid4().hex[:8]}.mp4"
     dest_dir = Path(repo_dir) / "videos"
     dest_dir.mkdir(parents=True, exist_ok=True)
@@ -44,11 +46,15 @@ def upload_to_github_raw(local_video_path, repo_dir="C:/Users/kreg9/krg-js"):
     subprocess.run(["git", "config", "user.name", "kreggsjs-bot"], cwd=repo_dir, check=False)
     subprocess.run(["git", "config", "user.email", "bot@kreggsjs.com"], cwd=repo_dir, check=False)
     subprocess.run(["git", "add", f"videos/{vid_stem}"], cwd=repo_dir, check=False)
-    subprocess.run(["git", "commit", "-m", f"Add reel {vid_stem}"], cwd=repo_dir, check=False)
-    subprocess.run(["git", "pull", "--rebase", "origin", "main"], cwd=repo_dir, check=False)
+    subprocess.run(["git", "commit", "-m", f"Add reel {vid_stem} [skip ci]"], cwd=repo_dir, check=False)
+
+    gh_pat = os.environ.get("GH_PAT")
+    push_target = f"https://x-access-token:{gh_pat}@github.com/{GH_REPO_NAME}.git" if gh_pat else "origin"
+
+    subprocess.run(["git", "pull", "--rebase", push_target, "main"], cwd=repo_dir, check=False)
 
     for attempt in range(3):
-        ret = subprocess.run(["git", "push", "origin", "main"], cwd=repo_dir)
+        ret = subprocess.run(["git", "push", push_target, "HEAD:main"], cwd=repo_dir)
         if ret.returncode == 0:
             break
         time.sleep(4)
