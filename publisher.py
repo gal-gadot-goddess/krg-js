@@ -6,6 +6,9 @@ import subprocess
 import requests
 from pathlib import Path
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 # Target Credentials
 FB_PAGE_NAME = "Kreggsjs"
 FB_PAGE_ID = "835956572945563"
@@ -151,11 +154,13 @@ def publish_reel(local_video_path, caption, title):
     try:
         results['instagram'] = publish_to_instagram_reels(raw_video_url, caption, page_token)
     except Exception as e:
+        print(f"[Publisher] Instagram Exception: {e}")
         results['instagram'] = {"platform": "instagram", "status": "error", "message": str(e)}
 
     try:
         results['facebook'] = publish_to_facebook_reels(local_video_path, caption, title, page_token)
     except Exception as e:
+        print(f"[Publisher] Facebook Exception: {e}")
         results['facebook'] = {"platform": "facebook", "status": "error", "message": str(e)}
 
     return results

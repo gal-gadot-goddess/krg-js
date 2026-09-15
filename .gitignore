@@ -2,3 +2,6 @@ node_modules/
 temp_audio.wav
 *.tmp
 .env
+/*.mp4
+!videos/
+!videos/*.mp4

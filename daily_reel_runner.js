@@ -52,11 +52,12 @@ async function runDailyReel(algorithmIndexOverride = null) {
   const pubScript = path.join(projectDir, 'publisher.py');
 
   const pubProcess = spawn(pythonBin, [
+    '-u',
     pubScript,
     outputVideo,
     chosenAlgo.caption,
     chosenAlgo.title
-  ], { stdio: 'inherit' });
+  ], { stdio: 'inherit', env: process.env });
 
   await new Promise((resolve) => {
     pubProcess.on('close', (code) => {
