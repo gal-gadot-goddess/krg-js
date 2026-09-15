@@ -17,16 +17,12 @@ def get_page_access_token():
     if not user_token:
         raise ValueError("META_LONG_LIVED_ACCESS_TOKEN not set in environment variables")
     
-    url = f"https://graph.facebook.com/v21.0/me/accounts?fields=id,name,access_token&limit=100&access_token={user_token}"
-    while url:
-        resp = requests.get(url, timeout=20)
-        if resp.status_code != 200:
-            break
-        data = resp.json()
-        for p in data.get('data', []):
-            if p.get('id') == FB_PAGE_ID or p.get('name', '').lower() == FB_PAGE_NAME.lower():
-                return p.get('access_token')
-        url = data.get('paging', {}).get('next')
+    url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}?fields=access_token&access_token={user_token}"
+    resp = requests.get(url, timeout=20)
+    if resp.status_code == 200:
+        token = resp.json().get('access_token')
+        if token:
+            return token
     
     print("[Publisher] Warning: Specific page token not found, falling back to user token")
     return user_token
@@ -42,8 +38,8 @@ def upload_to_github_raw(local_video_path, repo_dir="C:/Users/kreg9/krg-js"):
     shutil.copyfile(local_video_path, dest_file)
 
     # Git commit and push
-    subprocess.run(["git", "config", "--global", "user.name", "kreggsjs-bot"], cwd=repo_dir, check=False)
-    subprocess.run(["git", "config", "--global", "user.email", "bot@kreggsjs.com"], cwd=repo_dir, check=False)
+    subprocess.run(["git", "config", "user.name", "kreggsjs-bot"], cwd=repo_dir, check=False)
+    subprocess.run(["git", "config", "user.email", "bot@kreggsjs.com"], cwd=repo_dir, check=False)
     subprocess.run(["git", "add", f"videos/{vid_stem}"], cwd=repo_dir, check=False)
     subprocess.run(["git", "commit", "-m", f"Add reel {vid_stem}"], cwd=repo_dir, check=False)
     subprocess.run(["git", "pull", "--rebase", "origin", "main"], cwd=repo_dir, check=False)
@@ -80,9 +76,28 @@ def publish_to_instagram_reels(video_url, caption, access_token):
     container_id = resp.json().get('id')
     print(f"[Publisher] Instagram Container Created: {container_id}")
 
-    # Wait for Instagram media processing
-    print("[Publisher] Waiting for Instagram to process video stream (45s)...")
-    time.sleep(45)
+    # Actively poll Instagram media container status
+    print("[Publisher] Polling Instagram processing status...")
+    status_url = f"https://graph.facebook.com/v21.0/{container_id}?fields=status_code,status&access_token={access_token}"
+    ready = False
+    for attempt in range(25):
+        time.sleep(6)
+        s_resp = requests.get(status_url, timeout=20)
+        if s_resp.status_code == 200:
+            s_data = s_resp.json()
+            status_code = s_data.get('status_code')
+            print(f"[Publisher] Container Status: {status_code} ({s_data.get('status', '')}) [Check {attempt+1}/25]")
+            if status_code == 'FINISHED':
+                ready = True
+                break
+            elif status_code == 'ERROR':
+                print("[Publisher] Processing error:", s_data)
+                return {"platform": "instagram", "status": "failed", "error": s_data}
+        else:
+            print(f"[Publisher] Status check response: {s_resp.text}")
+
+    if not ready:
+        print("[Publisher] Proceeding to publish attempt after timeout...")
 
     # Publish Container
     pub_url = f"https://graph.facebook.com/v21.0/{IG_USER_ID}/media_publish"
@@ -91,15 +106,15 @@ def publish_to_instagram_reels(video_url, caption, access_token):
         'access_token': access_token
     }
 
-    for attempt in range(4):
+    for attempt in range(5):
         pub_resp = requests.post(pub_url, params=pub_params, timeout=60)
         if pub_resp.status_code == 200:
             media_id = pub_resp.json().get('id')
             print(f"🎉 [Instagram] SUCCESS! Published Reel Media ID: {media_id}")
             return {"platform": "instagram", "status": "success", "id": media_id}
         else:
-            print(f"[Publisher] Instagram publish in progress (attempt {attempt+1}), waiting 15s...")
-            time.sleep(15)
+            print(f"[Publisher] Instagram publish in progress (attempt {attempt+1}), waiting 10s...")
+            time.sleep(10)
 
     return {"platform": "instagram", "status": "failed", "error": pub_resp.text}
 
