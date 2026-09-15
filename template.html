@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 20%, #15102a 0%, #070510 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 48px;
+    position: relative;
+  }
+  
+  /* Ambient glowing neon orbs */
+  .glow-orb-1 {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: 2%;
+    left: -200px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.28) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+  .glow-orb-2 {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    bottom: 3%;
+    right: -200px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  /* Header banner */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    z-index: 10;
+  }
+  .header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+  }
+  .pulse-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 14px #ef4444;
+  }
+  .header .title {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #f43f5e, #c084fc, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title span {
+    color: #38bdf8;
+  }
+
+  /* Section 1: Code Editor Window */
+  .editor-window {
+    width: 100%;
+    height: 740px;
+    background: rgba(13, 16, 26, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 26px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 34px;
+    z-index: 10;
+  }
+  .editor-titlebar {
+    height: 60px;
+    background: rgba(22, 26, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .window-dots {
+    display: flex;
+    gap: 10px;
+  }
+  .window-dots div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ff5f56; }
+  .dot-yellow { background: #ffbd2e; }
+  .dot-green { background: #27c93f; }
+  .editor-tab {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 21px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .editor-tab .js-icon {
+    color: #f7df1e;
+    font-weight: 900;
+  }
+  
+  /* Scrollable code viewport with auto-scroll UP */
+  .editor-body-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding: 24px 28px;
+  }
+  .editor-body {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 22px;
+    line-height: 1.55;
+    color: #e2e8f0;
+    white-space: pre;
+    position: absolute;
+    bottom: auto;
+    top: 24px;
+    left: 28px;
+    right: 28px;
+    transition: transform 0.15s ease-out;
+  }
+  .line-num {
+    color: #475569;
+    user-select: none;
+    margin-right: 18px;
+    display: inline-block;
+    width: 32px;
+    text-align: right;
+  }
+  .kw { color: #f43f5e; font-weight: 700; }
+  .fn { color: #38bdf8; font-weight: 600; }
+  .str { color: #a3e635; }
+  .num { color: #fb923c; }
+  .com { color: #64748b; font-style: italic; }
+  .cursor {
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background: #38bdf8;
+    vertical-align: text-bottom;
+    margin-left: 4px;
+    box-shadow: 0 0 12px #38bdf8;
+  }
+
+  /* Section 2: Visual Preview */
+  .preview-card {
+    width: 100%;
+    height: 840px;
+    background: rgba(8, 10, 18, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 26px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(56, 189, 248, 0.22);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+  .preview-bar {
+    height: 56px;
+    background: rgba(18, 22, 38, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #94a3b8;
+    flex-shrink: 0;
+  }
+  .fps-badge {
+    color: #10b981;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.15);
+    padding: 4px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  #artCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #64748b;
+    font-size: 22px;
+    font-weight: 600;
+    z-index: 10;
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e8f0;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">
+      <div class="pulse-dot"></div>
+      <span id="headerBadge">CODE TO ART</span>
+    </div>
+    <div class="title" id="headerTitle">GENERATIVE JAVASCRIPT</div>
+  </div>
+
+  <!-- Section 1: Code Editor Window -->
+  <div class="section-title">
+    <span>01.</span> <span id="section1Title">WRITING THE ALGORITHM</span>
+  </div>
+  <div class="editor-window">
+    <div class="editor-titlebar">
+      <div class="window-dots">
+        <div class="dot-red"></div>
+        <div class="dot-yellow"></div>
+        <div class="dot-green"></div>
+      </div>
+      <div class="editor-tab">
+        <span class="js-icon">JS</span>
+        <span id="tabFileName">generator.js</span>
+      </div>
+    </div>
+    <div class="editor-body-wrapper" id="editorWrapper">
+      <div class="editor-body" id="editorBody"></div>
+    </div>
+  </div>
+
+  <!-- Section 2: Live Visualization -->
+  <div class="section-title">
+    <span>02.</span> LIVE CANVAS VISUALIZATION
+  </div>
+  <div class="preview-card">
+    <div class="preview-bar">
+      <span id="previewSubtitle">Canvas 2D / Mathematical Simulation</span>
+      <span class="fps-badge">60 FPS ACTIVE</span>
+    </div>
+    <canvas id="artCanvas" width="984" height="784"></canvas>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="cta">⚡ Follow @kreggsjs for daily JS Art</div>
+    <div>1080x1920 • 60 FPS</div>
+  </div>
+
+<script>
+  const canvas = document.getElementById('artCanvas');
+  const ctx = canvas.getContext('2d');
+  const editorBody = document.getElementById('editorBody');
+  const editorWrapper = document.getElementById('editorWrapper');
+
+  // Configurable visualization object
+  window.currentConfig = {
+    title: "Quantum Spiral Vortex",
+    fileName: "quantum_vortex.js",
+    code: `// Quantum Spiral Field Simulation
+function renderFrame(time) {
+  ctx.fillStyle = 'rgba(8, 6, 17, 0.2)';
+  ctx.fillRect(0, 0, width, height);
+
+  const particles = 180;
+  for (let i = 0; i < particles; i++) {
+    const angle = i * 0.12 + time * 1.5;
+    const r = 60 + i * 1.9 + Math.sin(time*3 + i*0.2) * 45;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+
+    const hue = (i * 2 + time * 60) % 360;
+    ctx.strokeStyle = \`hsl(\${hue}, 95%, 65%)\`;
+    ctx.lineWidth = 2.8;
+    ctx.beginPath();
+    ctx.arc(x, y, 4 + Math.sin(i + time*4)*3, 0, Math.PI*2);
+    ctx.stroke();
+  }
+}`,
+    render: function(ctx, width, height, t) {
+      const cx = width / 2;
+      const cy = height / 2;
+      ctx.fillStyle = '#080612';
+      ctx.fillRect(0, 0, width, height);
+
+      const coreGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 330);
+      coreGrad.addColorStop(0, 'rgba(168, 85, 247, 0.38)');
+      coreGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.16)');
+      coreGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = coreGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      const arms = 4;
+      const countPerArm = 55;
+      for (let a = 0; a < arms; a++) {
+        const armOffset = (a * Math.PI * 2) / arms;
+        ctx.beginPath();
+        for (let i = 0; i < countPerArm; i++) {
+          const u = i / countPerArm;
+          const spin = t * 1.8 + armOffset;
+          const angle = spin + u * Math.PI * 3.6;
+          const wave = Math.sin(t * 4 + u * 12) * (20 + u * 40);
+          const radius = 25 + u * 320 + wave;
+          const x = cx + Math.cos(angle) * radius;
+          const y = cy + Math.sin(angle) * radius;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+
+          if (i % 3 === 0) {
+            const hue = (a * 70 + i * 4 + t * 90) % 360;
+            ctx.save();
+            ctx.fillStyle = 'hsl(' + hue + ', 100%, 70%)';
+            ctx.shadowColor = 'hsl(' + hue + ', 100%, 60%)';
+            ctx.shadowBlur = 16;
+            ctx.beginPath();
+            ctx.arc(x, y, 3.5 + Math.sin(t * 6 + i) * 1.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+        const hue = (a * 75 + t * 50) % 360;
+        ctx.strokeStyle = 'hsla(' + hue + ', 90%, 65%, 0.8)';
+        ctx.lineWidth = 3.5;
+        ctx.stroke();
+      }
+
+      for (let r = 1; r <= 3; r++) {
+        const ringRadius = (t * 80 + r * 110) % 340;
+        const alpha = Math.max(0, 1 - ringRadius / 340);
+        ctx.beginPath();
+        ctx.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(56, 189, 248, ' + (alpha * 0.45) + ')';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 12]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+  };
+
+  function highlightSyntax(raw) {
+    let text = raw;
+    text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    text = text.replace(/(\/\/.*$)/gm, '<span class="com">$1</span>');
+    text = text.replace(/\b(function|const|let|for|return|var|if|else)\b/g, '<span class="kw">$1</span>');
+    text = text.replace(/\b(renderFrame|fillRect|beginPath|arc|stroke|fill|sin|cos|sqrt|pow|push|pop)\b/g, '<span class="fn">$1</span>');
+    text = text.replace(/\b(\d+(\.\d+)?)\b/g, '<span class="num">$1</span>');
+    text = text.replace(/('rgba[^']*'|'[^']*')/g, '<span class="str">$1</span>');
+    return text;
+  }
+
+  // Load configuration dynamically
+  window.setVisualizationConfig = function(cfg) {
+    window.currentConfig = cfg;
+    document.getElementById('tabFileName').innerText = cfg.fileName || 'algorithm.js';
+    if (cfg.title) document.getElementById('previewSubtitle').innerText = cfg.title;
+  };
+
+  // Deterministic seek function with AUTO-SCROLL UP
+  window.setSeekTime = function(t) {
+    const fullCode = window.currentConfig.code;
+    const typingDuration = 6.0; // types out across first 6 seconds
+    const codeProgress = Math.min(1, t / typingDuration);
+    const charCount = Math.floor(fullCode.length * codeProgress);
+    const visibleText = fullCode.substring(0, charCount);
+
+    const lines = visibleText.split('\n');
+    let htmlLines = lines.map((ln, idx) => {
+      const lineNum = '<span class="line-num">' + (idx + 1) + '</span>';
+      return lineNum + highlightSyntax(ln);
+    }).join('\n');
+
+    htmlLines += '<span class="cursor"></span>';
+    editorBody.innerHTML = htmlLines;
+
+    // AUTO-SCROLL UP CALCULATION
+    // Line height is ~34px. If total lines exceed visible height, smoothly translate UPWARDS!
+    const lineHeight = 34.1;
+    const maxVisibleLines = 16;
+    const currentLineCount = lines.length;
+
+    if (currentLineCount > maxVisibleLines) {
+      const overflowLines = currentLineCount - maxVisibleLines;
+      const translateY = -(overflowLines * lineHeight);
+      editorBody.style.transform = 'translateY(' + translateY + 'px)';
+    } else {
+      editorBody.style.transform = 'translateY(0px)';
+    }
+
+    // Render Canvas Visual
+    const width = canvas.width;
+    const height = canvas.height;
+    if (window.currentConfig.render) {
+      window.currentConfig.render(ctx, width, height, t);
+    }
+  };
+
+  window.setSeekTime(0);
+</script>
+</body>
+</html>
