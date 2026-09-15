@@ -3,23 +3,29 @@ const fs = require('fs');
 const path = require('path');
 
 const THEMES = [
-  { mode: 'three', theme: '3D Hyperdimensional Torus Knot and rotating particle nebulae' },
-  { mode: 'three', theme: '3D Cybernetic Polyhedral Geodesic Sphere with vertex energy pulses' },
-  { mode: 'three', theme: '3D Cosmic DNA Double Helix spiral with iridescent connecting rungs' },
-  { mode: 'three', theme: '3D Rotating Klein Bottle topology wireframe with chromatic aberration' },
-  { mode: 'three', theme: '3D Kinetic Gyroscopic Gimbal rings with glowing plasma center' },
-  { mode: 'canvas', theme: 'Sacred geometry Metatron cube with concentric rotating mandala nodes' },
-  { mode: 'canvas', theme: 'Chaotic Lorenz strange attractor in hyperspace with neon light trails' },
-  { mode: 'canvas', theme: 'Magnetic vector flow field driven by turbulent curl noise vectors' },
-  { mode: 'canvas', theme: 'Quantum particle wave-function interference with chromatic dispersion' },
-  { mode: 'canvas', theme: 'Black hole gravitational lensing photon sphere with swirling relativistic jets' }
+  { mode: 'three', theme: 'Grand Cosmic Supernova with swirling luminous accretion disk and pulsing core' },
+  { mode: 'three', theme: '3D Hyperdimensional Calabi-Yau manifold with rotating iridescent dimensions' },
+  { mode: 'three', theme: '3D Celestial Orion Nebula vortex with sparkling star clusters and galactic arms' },
+  { mode: 'three', theme: '3D Cosmic DNA Double Helix spiral with radiant iridescent connecting energy rungs' },
+  { mode: 'three', theme: '3D Cybernetic Polyhedral Geodesic Sphere with chromatic vertex energy pulses' },
+  { mode: 'three', theme: '3D Hyperdimensional Torus Knot and rotating particle cosmic nebulae' },
+  { mode: 'three', theme: '3D Kinetic Gyroscopic Astral Gimbal rings with glowing neon stellar core' },
+  { mode: 'three', theme: '3D Quantum Wormhole warp tunnel with relativistic light bending' },
+  { mode: 'canvas', theme: 'Grand Cosmic Galaxy Collision with spiral arm gravitational tidal streams' },
+  { mode: 'canvas', theme: 'Black hole gravitational lensing photon sphere with swirling relativistic jets' },
+  { mode: 'canvas', theme: 'Sacred geometry Metatron cosmic cube with concentric rotating mandala nodes' },
+  { mode: 'canvas', theme: 'Chaotic Lorenz strange attractor in hyperspace with radiant neon light trails' },
+  { mode: 'canvas', theme: 'Magnetic pulsar field with high-energy relativistic synchrotron emission' },
+  { mode: 'canvas', theme: 'Quantum particle wave-function interference with vivid chromatic dispersion' },
+  { mode: 'canvas', theme: 'Superluminal cosmic ray cascade with cascading fractal energy branches' }
 ];
 
 async function generateNewAlgorithmWithPollinations(history = []) {
   const apiKey = process.env.POLLINATIONS_API_KEY;
-  const usedTitles = history.map(h => h.title || h.id || '');
+  const usedTitles = history.map(h => (h.title || h.id || '').toLowerCase());
   
-  const availableThemes = THEMES.filter(t => !usedTitles.some(u => u.toLowerCase().includes(t.theme.slice(0, 10))));
+  // Filter out themes already used recently in history
+  const availableThemes = THEMES.filter(t => !usedTitles.some(u => u.includes(t.theme.slice(0, 8).toLowerCase())));
   const chosenItem = availableThemes.length > 0 
     ? availableThemes[Math.floor(Math.random() * availableThemes.length)]
     : THEMES[Math.floor(Math.random() * THEMES.length)];
