@@ -310,6 +310,171 @@ function simulateAttractor(time) {
       }
     })`
   }
+,
+  {
+    id: "three_torus_hyperspace",
+    title: "3D Torus Knot Hyperspace",
+    fileName: "torus_knot_3d.js",
+    caption: "🌌 Mesmerizing 3D Torus Knot Hyperspace rendered with Three.js & WebGL! Watch the glowing geometric mesh deform in real-time. Follow @kreggsjs for daily 3D code reels! ⚡✨\n\n#threejs #webgl #javascript #creativecoding #3dart #generativeart #mathart #reels",
+    isThreeJS: true,
+    code: `// 3D Geometric Torus Knot in Three.js
+function buildScene() {
+  const geom = new THREE.TorusKnotGeometry(1.6, 0.45, 140, 24, 2, 5);
+  const mat = new THREE.MeshNormalMaterial({ wireframe: true });
+  const mesh = new THREE.Mesh(geom, mat);
+  scene.add(mesh);
+}
+
+function renderFrame(time) {
+  mesh.rotation.x = time * 0.9;
+  mesh.rotation.y = time * 1.3;
+  mesh.scale.setScalar(1 + Math.sin(time*2.5)*0.15);
+  renderer.render(scene, camera);
+}`,
+    initThreeString: `(function(THREE, scene, camera, renderer) {
+      while(scene.children.length > 0) scene.remove(scene.children[0]);
+      camera.position.set(0, 0, 4.6);
+      
+      const geom = new THREE.TorusKnotGeometry(1.5, 0.42, 160, 28, 2, 5);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x38bdf8,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.85
+      });
+      const mesh = new THREE.Mesh(geom, wireMat);
+      mesh.name = "knotMesh";
+      scene.add(mesh);
+
+      // Inner glowing core
+      const coreGeom = new THREE.IcosahedronGeometry(0.75, 2);
+      const coreMat = new THREE.MeshBasicMaterial({
+        color: 0xf43f5e,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.6
+      });
+      const core = new THREE.Mesh(coreGeom, coreMat);
+      core.name = "coreMesh";
+      scene.add(core);
+
+      // Particle halo
+      const pCount = 800;
+      const pGeom = new THREE.BufferGeometry();
+      const pPos = new Float32Array(pCount * 3);
+      for(let i=0; i<pCount*3; i+=3) {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(Math.random() * 2 - 1);
+        const r = 2.4 + Math.random() * 1.5;
+        pPos[i] = r * Math.sin(phi) * Math.cos(theta);
+        pPos[i+1] = r * Math.sin(phi) * Math.sin(theta);
+        pPos[i+2] = r * Math.cos(phi);
+      }
+      pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      const pMat = new THREE.PointsMaterial({
+        color: 0xa855f7,
+        size: 0.04,
+        transparent: true,
+        opacity: 0.75
+      });
+      const points = new THREE.Points(pGeom, pMat);
+      points.name = "particles";
+      scene.add(points);
+    })`,
+    renderThreeString: `(function(THREE, scene, camera, renderer, t) {
+      const knot = scene.getObjectByName("knotMesh");
+      const core = scene.getObjectByName("coreMesh");
+      const particles = scene.getObjectByName("particles");
+
+      if (knot) {
+        knot.rotation.x = t * 0.85;
+        knot.rotation.y = t * 1.25;
+        knot.rotation.z = Math.sin(t * 0.5) * 0.4;
+        const s = 1.0 + Math.sin(t * 2.8) * 0.12;
+        knot.scale.set(s, s, s);
+      }
+      if (core) {
+        core.rotation.x = -t * 1.5;
+        core.rotation.y = -t * 1.8;
+      }
+      if (particles) {
+        particles.rotation.y = t * 0.25;
+        particles.rotation.x = Math.sin(t * 0.3) * 0.2;
+      }
+
+      renderer.render(scene, camera);
+    })`
+  },
+  {
+    id: "three_cyber_icosahedron",
+    title: "Quantum Icosahedron Matrix",
+    fileName: "quantum_icosahedron.js",
+    caption: "🔮 High-Dimensional Quantum Icosahedron Matrix rendered in Three.js WebGL! Dynamic vertex pulsations & chromatic field lines. Follow @kreggsjs for more! 🚀💫\n\n#threejs #webgl #generative #programming #creativecoding #javascript #frontend #reels",
+    isThreeJS: true,
+    code: `// Quantum Wireframe Icosahedron
+function createMatrix() {
+  const geo = new THREE.IcosahedronGeometry(1.8, 3);
+  const mat = new THREE.MeshBasicMaterial({
+    color: 0x22d3ee,
+    wireframe: true
+  });
+  const sphere = new THREE.Mesh(geo, mat);
+  scene.add(sphere);
+}
+
+function render(time) {
+  sphere.rotation.x = time * 0.7;
+  sphere.rotation.y = time * 1.1;
+  const pulse = 1 + Math.sin(time * 3) * 0.2;
+  sphere.scale.set(pulse, pulse, pulse);
+  renderer.render(scene, camera);
+}`,
+    initThreeString: `(function(THREE, scene, camera, renderer) {
+      while(scene.children.length > 0) scene.remove(scene.children[0]);
+      camera.position.set(0, 0, 5.0);
+
+      const geo = new THREE.IcosahedronGeometry(1.8, 2);
+      const mat = new THREE.MeshBasicMaterial({
+        color: 0x22d3ee,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.name = "icoMesh";
+      scene.add(mesh);
+
+      // Outer rings
+      for (let r = 0; r < 3; r++) {
+        const ringGeo = new THREE.TorusGeometry(2.3 + r * 0.3, 0.02, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: r === 0 ? 0xf43f5e : (r === 1 ? 0xa855f7 : 0x38bdf8),
+          transparent: true,
+          opacity: 0.65
+        });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.name = "ring_" + r;
+        scene.add(ring);
+      }
+    })`,
+    renderThreeString: `(function(THREE, scene, camera, renderer, t) {
+      const ico = scene.getObjectByName("icoMesh");
+      if (ico) {
+        ico.rotation.x = t * 0.65;
+        ico.rotation.y = t * 1.05;
+        const pulse = 1.0 + Math.sin(t * 3.2) * 0.16;
+        ico.scale.set(pulse, pulse, pulse);
+      }
+      for (let r = 0; r < 3; r++) {
+        const ring = scene.getObjectByName("ring_" + r);
+        if (ring) {
+          ring.rotation.x = t * (0.8 + r * 0.3) * (r % 2 === 0 ? 1 : -1);
+          ring.rotation.y = t * (0.6 + r * 0.2);
+        }
+      }
+      renderer.render(scene, camera);
+    })`
+  }
 ];
 
 module.exports = { ALGORITHMS };

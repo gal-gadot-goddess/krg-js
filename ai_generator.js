@@ -3,36 +3,53 @@ const fs = require('fs');
 const path = require('path');
 
 const THEMES = [
-  "neon cybernetic neural network with pulsing synapse nodes and data packets",
-  "chaotic lorenz strange attractor in high-dimensional hyperspace with glowing trails",
-  "sacred geometry metatron cube with rotating interlocking harmonic mandala rings",
-  "quantum particle wave-function interference with chromatic aberration dispersion",
-  "phyllotaxis golden ratio spiral galaxy with expanding luminous stardust",
-  "magnetic vector flow field driven by turbulent perlin-like curl noise",
-  "hyperdimensional 4D tesseract rotating stereographic projection wireframe",
-  "hypnotic reaction-diffusion organic cellular mitosis pattern",
-  "laser spirograph epitrochoid laser harmonograph with neon gradient trails",
-  "black hole gravitational lensing photon sphere with swirling relativistic jets"
+  { mode: 'three', theme: '3D Hyperdimensional Torus Knot and rotating particle nebulae' },
+  { mode: 'three', theme: '3D Cybernetic Polyhedral Geodesic Sphere with vertex energy pulses' },
+  { mode: 'three', theme: '3D Cosmic DNA Double Helix spiral with iridescent connecting rungs' },
+  { mode: 'three', theme: '3D Rotating Klein Bottle topology wireframe with chromatic aberration' },
+  { mode: 'three', theme: '3D Kinetic Gyroscopic Gimbal rings with glowing plasma center' },
+  { mode: 'canvas', theme: 'Sacred geometry Metatron cube with concentric rotating mandala nodes' },
+  { mode: 'canvas', theme: 'Chaotic Lorenz strange attractor in hyperspace with neon light trails' },
+  { mode: 'canvas', theme: 'Magnetic vector flow field driven by turbulent curl noise vectors' },
+  { mode: 'canvas', theme: 'Quantum particle wave-function interference with chromatic dispersion' },
+  { mode: 'canvas', theme: 'Black hole gravitational lensing photon sphere with swirling relativistic jets' }
 ];
 
 async function generateNewAlgorithmWithPollinations(history = []) {
   const apiKey = process.env.POLLINATIONS_API_KEY;
   const usedTitles = history.map(h => h.title || h.id || '');
   
-  const availableThemes = THEMES.filter(t => !usedTitles.some(u => u.toLowerCase().includes(t.slice(0, 10))));
-  const selectedTheme = availableThemes.length > 0 
+  const availableThemes = THEMES.filter(t => !usedTitles.some(u => u.toLowerCase().includes(t.theme.slice(0, 10))));
+  const chosenItem = availableThemes.length > 0 
     ? availableThemes[Math.floor(Math.random() * availableThemes.length)]
     : THEMES[Math.floor(Math.random() * THEMES.length)];
 
-  console.log(`[AI Generator] Querying Pollinations AI for theme: "${selectedTheme}"...`);
+  const selectedTheme = chosenItem.theme;
+  const isThree = chosenItem.mode === 'three';
+
+  console.log(`[AI Generator] Querying Pollinations AI for [${isThree ? '3D Three.js' : 'Canvas 2D'}] theme: "${selectedTheme}"...`);
 
   if (!apiKey) {
     console.log('[AI Generator] No POLLINATIONS_API_KEY provided, falling back to algorithmic rotation.');
     return null;
   }
 
-  const prompt = `You are a master creative technologist and generative artist in JavaScript.
-Create an original, mesmerizing HTML5 Canvas 2D animation on the theme: "${selectedTheme}".
+  const prompt = isThree ? `You are a master creative technologist and 3D WebGL artist in Three.js and JavaScript.
+Create an impressive, jaw-dropping 3D WebGL animation in Three.js on the theme: "${selectedTheme}".
+
+Requirements:
+1. Return ONLY a valid JSON object (no markdown wrapper, no backticks, no commentary).
+2. The JSON must have these exact fields:
+   - "id": a unique snake_case string (e.g. "three_cyber_helix_82")
+   - "title": a dramatic hook title under 40 characters (e.g. "3D Cybernetic Helix")
+   - "fileName": filename ending in .js (e.g. "cyber_helix_3d.js")
+   - "caption": viral Instagram/Facebook caption with 5-8 hashtags and call to follow @kreggsjs
+   - "isThreeJS": true
+   - "code": a clean, beautifully formatted JavaScript function string representing the code (15-22 lines maximum, lines under 55 characters so they fit the IDE without horizontal wrapping)
+   - "initThreeString": "(function(THREE, scene, camera, renderer) { while(scene.children.length>0) scene.remove(scene.children[0]); camera.position.set(0,0,5); /* add glowing meshes, wireframes, or points */ })"
+   - "renderThreeString": "(function(THREE, scene, camera, renderer, t) { /* animate rotations, scales, colors based on t */ renderer.render(scene, camera); })"`
+  : `You are a master creative technologist and generative artist in JavaScript.
+Create an impressive, high-visual-quality HTML5 Canvas 2D animation on the theme: "${selectedTheme}".
 
 Requirements:
 1. Return ONLY a valid JSON object (no markdown wrapper, no backticks, no commentary).
@@ -80,10 +97,16 @@ Requirements:
     text = text.replace(/\`\`\`json/gi, '').replace(/\`\`\`/g, '').trim();
     const algo = JSON.parse(text);
 
-    if (algo.id && algo.title && algo.renderString && algo.code) {
-      eval(algo.renderString);
-      console.log(`[AI Generator] Successfully synthesized: "${algo.title}"!`);
-      return algo;
+    if (algo.id && algo.title && algo.code) {
+      if (algo.isThreeJS && algo.renderThreeString) {
+        eval(algo.renderThreeString);
+        console.log(`[AI Generator] Successfully synthesized 3D Three.js algorithm: "${algo.title}"!`);
+        return algo;
+      } else if (algo.renderString) {
+        eval(algo.renderString);
+        console.log(`[AI Generator] Successfully synthesized Canvas 2D algorithm: "${algo.title}"!`);
+        return algo;
+      }
     }
   } catch (err) {
     console.warn('[AI Generator] Synthesis attempt encountered error:', err.message);

@@ -284,14 +284,16 @@
 
   <!-- Section 2: Live Visualization -->
   <div class="section-title">
-    <span>02.</span> LIVE CANVAS VISUALIZATION
+    <span>02.</span> LIVE VISUALIZATION (THREE.JS / WEBGL 60FPS)
   </div>
-  <div class="preview-card">
+  <div class="preview-card" id="previewCard">
     <div class="preview-bar">
-      <span id="previewSubtitle">Canvas 2D / Mathematical Simulation</span>
+      <span id="previewSubtitle">3D WebGL / Three.js Generative Art</span>
       <span class="fps-badge">60 FPS ACTIVE</span>
     </div>
-    <canvas id="artCanvas" width="984" height="784"></canvas>
+    <div id="canvasContainer" style="width: 984px; height: 784px; position: relative; overflow: hidden;">
+      <canvas id="artCanvas" width="984" height="784" style="position: absolute; top: 0; left: 0;"></canvas>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -300,9 +302,11 @@
     <div>1080x1920 • 60 FPS</div>
   </div>
 
+<script src="three.min.js"></script>
 <script>
   const canvas = document.getElementById('artCanvas');
   const ctx = canvas.getContext('2d');
+  const canvasContainer = document.getElementById('canvasContainer');
   const editorBody = document.getElementById('editorBody');
   const editorWrapper = document.getElementById('editorWrapper');
 
@@ -402,11 +406,50 @@ function renderFrame(time) {
     return text;
   }
 
+  let threeScene = null, threeCamera = null, threeRenderer = null;
+  let initializedThree = false;
+
+  window.initThreeContext = function() {
+    if (initializedThree && threeRenderer) return { scene: threeScene, camera: threeCamera, renderer: threeRenderer };
+    try {
+      threeScene = new THREE.Scene();
+      threeCamera = new THREE.PerspectiveCamera(55, 984 / 784, 0.1, 1000);
+      threeCamera.position.z = 5;
+      threeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      threeRenderer.setSize(984, 784);
+      threeRenderer.setPixelRatio(1);
+      threeRenderer.domElement.style.position = 'absolute';
+      threeRenderer.domElement.style.top = '0';
+      threeRenderer.domElement.style.left = '0';
+      threeRenderer.domElement.style.display = 'none';
+      canvasContainer.appendChild(threeRenderer.domElement);
+      initializedThree = true;
+      return { scene: threeScene, camera: threeCamera, renderer: threeRenderer };
+    } catch (e) {
+      console.warn("Three.js init fallback to 2D:", e);
+      return null;
+    }
+  };
+
   // Load configuration dynamically
   window.setVisualizationConfig = function(cfg) {
     window.currentConfig = cfg;
     document.getElementById('tabFileName').innerText = cfg.fileName || 'algorithm.js';
     if (cfg.title) document.getElementById('previewSubtitle').innerText = cfg.title;
+
+    if (cfg.isThreeJS) {
+      const tCtx = window.initThreeContext();
+      if (tCtx) {
+        canvas.style.display = 'none';
+        tCtx.renderer.domElement.style.display = 'block';
+        if (cfg.initThree) {
+          cfg.initThree(THREE, tCtx.scene, tCtx.camera, tCtx.renderer);
+        }
+      }
+    } else {
+      canvas.style.display = 'block';
+      if (threeRenderer) threeRenderer.domElement.style.display = 'none';
+    }
   };
 
   // Deterministic seek function with AUTO-SCROLL UP
@@ -427,7 +470,6 @@ function renderFrame(time) {
     editorBody.innerHTML = htmlLines;
 
     // AUTO-SCROLL UP CALCULATION
-    // Line height is ~34px. If total lines exceed visible height, smoothly translate UPWARDS!
     const lineHeight = 34.1;
     const maxVisibleLines = 16;
     const currentLineCount = lines.length;
@@ -440,10 +482,14 @@ function renderFrame(time) {
       editorBody.style.transform = 'translateY(0px)';
     }
 
-    // Render Canvas Visual
-    const width = canvas.width;
-    const height = canvas.height;
-    if (window.currentConfig.render) {
+    // Render Visual: Three.js or Canvas 2D
+    if (window.currentConfig.isThreeJS && threeRenderer) {
+      if (window.currentConfig.renderThree) {
+        window.currentConfig.renderThree(THREE, threeScene, threeCamera, threeRenderer, t);
+      }
+    } else if (window.currentConfig.render) {
+      const width = canvas.width;
+      const height = canvas.height;
       window.currentConfig.render(ctx, width, height, t);
     }
   };

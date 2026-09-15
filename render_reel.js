@@ -14,7 +14,9 @@ async function renderVideo(templateHtmlPath, audioPath, outputPath, algorithmCon
     executablePath: fs.existsSync(chromePath) ? chromePath : undefined,
     headless: 'new',
     args: [
-      '--disable-gpu',
+      '--use-gl=angle',
+      '--use-angle=swiftshader',
+      '--enable-webgl',
       '--no-sandbox',
       '--disable-setuid-sandbox',
       `--window-size=${width},${height}`
@@ -29,14 +31,21 @@ async function renderVideo(templateHtmlPath, audioPath, outputPath, algorithmCon
 
   // Inject algorithm configuration
   await page.evaluate((cfg) => {
-    // Rehydrate render function from string
-    const renderFn = eval(cfg.renderString);
-    window.setVisualizationConfig({
+    const configObj = {
       title: cfg.title,
       fileName: cfg.fileName,
       code: cfg.code,
-      render: renderFn
-    });
+      isThreeJS: !!cfg.isThreeJS
+    };
+
+    if (cfg.isThreeJS) {
+      if (cfg.initThreeString) configObj.initThree = eval(cfg.initThreeString);
+      if (cfg.renderThreeString) configObj.renderThree = eval(cfg.renderThreeString);
+    } else if (cfg.renderString) {
+      configObj.render = eval(cfg.renderString);
+    }
+
+    window.setVisualizationConfig(configObj);
   }, algorithmConfig);
 
   const ffmpegArgs = [
