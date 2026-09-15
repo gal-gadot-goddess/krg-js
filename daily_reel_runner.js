@@ -5,6 +5,8 @@ const { ALGORITHMS } = require('./algorithms');
 const { generateReelAudio } = require('./sound_synth');
 const { renderVideo } = require('./render_reel');
 
+const { generateNewAlgorithmWithPollinations } = require('./ai_generator');
+
 async function runDailyReel(algorithmIndexOverride = null) {
   console.log('====================================================');
   console.log('⚡ STARTING AUTONOMOUS DAILY JAVASCRIPT REEL RUNNER ⚡');
@@ -19,19 +21,26 @@ async function runDailyReel(algorithmIndexOverride = null) {
     } catch (e) {}
   }
 
-  // Choose next algorithm
-  let chosenAlgo;
+  // Choose next algorithm: Try Pollinations AI first for a brand new animation
+  let chosenAlgo = null;
   if (algorithmIndexOverride !== null) {
     chosenAlgo = ALGORITHMS[algorithmIndexOverride % ALGORITHMS.length];
   } else {
-    // Pick the algorithm with the fewest prior runs
-    const usedCounts = {};
-    ALGORITHMS.forEach(a => usedCounts[a.id] = 0);
-    history.forEach(h => {
-      if (usedCounts[h.id] !== undefined) usedCounts[h.id]++;
-    });
+    try {
+      chosenAlgo = await generateNewAlgorithmWithPollinations(history);
+    } catch (e) {
+      console.warn('[Runner] AI generation fallback:', e.message);
+    }
 
-    chosenAlgo = ALGORITHMS.slice().sort((a, b) => usedCounts[a.id] - usedCounts[b.id])[0];
+    if (!chosenAlgo) {
+      // Pick the algorithm with the fewest prior runs from curated pool
+      const usedCounts = {};
+      ALGORITHMS.forEach(a => usedCounts[a.id] = 0);
+      history.forEach(h => {
+        if (usedCounts[h.id] !== undefined) usedCounts[h.id]++;
+      });
+      chosenAlgo = ALGORITHMS.slice().sort((a, b) => usedCounts[a.id] - usedCounts[b.id])[0];
+    }
   }
 
   console.log(`\n🎯 Selected Daily Visual: [${chosenAlgo.title}] (${chosenAlgo.fileName})`);
