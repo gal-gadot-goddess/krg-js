@@ -20,19 +20,58 @@ IG_USER_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "17841461793148389")
 GH_REPO_NAME = os.environ.get("GITHUB_REPOSITORY", "gal-gadot-goddess/krg-js")
 
 def get_page_access_token():
-    token = os.environ.get('FACEBOOK_ACCESS_TOKEN')
-    if token:
-        return token
-    user_token = os.environ.get('META_LONG_LIVED_ACCESS_TOKEN')
-    if user_token:
-        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}?fields=access_token&access_token={user_token}"
-        resp = requests.get(url, timeout=20)
+    """
+    Retrieves the authentic Page Access Token for FB_PAGE_ID.
+    If the provided token is a User token, resolves it via /{FB_PAGE_ID}?fields=access_token or /me/accounts.
+    """
+    token = os.environ.get('FACEBOOK_ACCESS_TOKEN') or os.environ.get('META_LONG_LIVED_ACCESS_TOKEN')
+    if not token:
+        raise ValueError("Neither FACEBOOK_ACCESS_TOKEN nor META_LONG_LIVED_ACCESS_TOKEN is set in environment secrets.")
+
+    # 1. Check if token already belongs directly to FB_PAGE_ID
+    try:
+        me_resp = requests.get(f"https://graph.facebook.com/v21.0/me?access_token={token}", timeout=10)
+        if me_resp.status_code == 200:
+            me_data = me_resp.json()
+            if str(me_data.get('id')) == str(FB_PAGE_ID):
+                print(f"[Publisher] Token is verified Page Access Token for '{me_data.get('name')}' (ID: {FB_PAGE_ID})")
+                return token
+            else:
+                print(f"[Publisher] User Token identified: '{me_data.get('name')}' (ID: {me_data.get('id')}). Resolving Page Access Token...")
+    except Exception as e:
+        print(f"[Publisher] Warning verifying token entity: {e}")
+
+    # 2. Directly query the Page endpoint with the user token to retrieve Page Access Token
+    try:
+        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}?fields=access_token,name&access_token={token}"
+        resp = requests.get(url, timeout=15)
         if resp.status_code == 200:
-            p_token = resp.json().get('access_token')
+            p_data = resp.json()
+            p_token = p_data.get('access_token')
             if p_token:
+                print(f"[Publisher] Successfully resolved Page Access Token for '{p_data.get('name')}' (ID: {FB_PAGE_ID})")
                 return p_token
-        return user_token
-    raise ValueError("Neither FACEBOOK_ACCESS_TOKEN nor META_LONG_LIVED_ACCESS_TOKEN is set in environment secrets.")
+    except Exception as e:
+        print(f"[Publisher] Direct Page token query error: {e}")
+
+    # 3. Fallback: Search /me/accounts with pagination
+    try:
+        acc_url = f"https://graph.facebook.com/v21.0/me/accounts?limit=100&access_token={token}"
+        while acc_url:
+            acc_resp = requests.get(acc_url, timeout=15)
+            if acc_resp.status_code != 200:
+                break
+            acc_data = acc_resp.json()
+            for page in acc_data.get('data', []):
+                if str(page.get('id')) == str(FB_PAGE_ID):
+                    print(f"[Publisher] Resolved Page Access Token from /me/accounts for '{page.get('name')}'")
+                    return page.get('access_token')
+            acc_url = acc_data.get('paging', {}).get('next')
+    except Exception as e:
+        print(f"[Publisher] Accounts search fallback error: {e}")
+
+    print("[Publisher] Warning: Could not resolve specific Page Access Token, using provided token as fallback.")
+    return token
 
 def verify_token(token):
     try:
@@ -70,7 +109,7 @@ def upload_to_github_raw(local_video_path, repo_dir=None):
     gh_token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_PAT")
     push_target = f"https://x-access-token:{gh_token}@github.com/{GH_REPO_NAME}.git" if gh_token else "origin"
 
-    subprocess.run(["git", "pull", "--rebase", push_target, "main"], cwd=repo_dir, check=False)
+    subprocess.run(["git", "pull", "--rebase", "--autostash", push_target, "main"], cwd=repo_dir, check=False)
 
     for attempt in range(3):
         ret = subprocess.run(["git", "push", push_target, "HEAD:main"], cwd=repo_dir)
@@ -81,7 +120,7 @@ def upload_to_github_raw(local_video_path, repo_dir=None):
     raw_url = f"https://raw.githubusercontent.com/{GH_REPO_NAME}/main/videos/{vid_stem}"
     print(f"[Publisher] Public GitHub Raw Video URL: {raw_url}")
 
-    # CRITICAL: Verify CDN Edge propagation before handing URL to Instagram!
+    # Verify CDN Edge propagation before handing URL to Instagram
     print(f"[Publisher] Verifying GitHub raw CDN propagation...")
     cdn_ok = False
     for cdn_attempt in range(25):
@@ -117,23 +156,29 @@ def publish_to_instagram_reels(video_url, caption, access_token):
 
     resp = requests.post(container_url, params=params, timeout=60)
     if resp.status_code != 200:
-        print("[Publisher] IG Container Creation Error:", resp.text)
+        print("[Publisher] ❌ Failed to create Instagram Reel container:", resp.text)
         return {"platform": "instagram", "status": "failed", "error": resp.text}
 
     container_id = resp.json().get('id')
     print(f"[Publisher] Instagram Container Created: {container_id}")
 
-    # Poll Instagram media container status
+    # Poll Container Status
+    status_url = f"https://graph.facebook.com/v21.0/{container_id}"
+    status_params = {
+        'fields': 'status_code,status',
+        'access_token': access_token
+    }
+
     print("[Publisher] Polling Instagram video processing status...")
-    status_url = f"https://graph.facebook.com/v21.0/{container_id}?fields=status_code,status&access_token={access_token}"
     ready = False
-    for attempt in range(30):
-        time.sleep(5)
-        s_resp = requests.get(status_url, timeout=20)
+    for i in range(30):
+        time.sleep(6)
+        s_resp = requests.get(status_url, params=status_params, timeout=20)
         if s_resp.status_code == 200:
             s_data = s_resp.json()
             status_code = s_data.get('status_code')
-            print(f"[Publisher] Container Status: {status_code} ({s_data.get('status', '')}) [Check {attempt+1}/30]")
+            desc = s_data.get('status', '')
+            print(f"[Publisher] Container Status: {status_code} ({desc}) [Check {i+1}/30]")
             if status_code == 'FINISHED':
                 ready = True
                 break
@@ -165,30 +210,82 @@ def publish_to_instagram_reels(video_url, caption, access_token):
 
     return {"platform": "instagram", "status": "failed", "error": pub_resp.text}
 
-def publish_to_facebook_reels(video_path, caption, title, access_token):
+def publish_to_facebook_reels(video_path, caption, title, page_access_token):
     print(f"\n[Publisher] Step 3: Publishing to Facebook Reels ({FB_PAGE_NAME} - ID: {FB_PAGE_ID})...")
-    url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/videos"
 
+    # Method 1: Official Facebook Video Reels API (3-phase Reels API)
+    try:
+        init_url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/video_reels"
+        init_res = requests.post(init_url, params={'upload_phase': 'start', 'access_token': page_access_token}, timeout=30)
+        if init_res.status_code == 200:
+            init_data = init_res.json()
+            fb_video_id = init_data.get('video_id')
+            upload_url = init_data.get('upload_url')
+            print(f"[Publisher] Facebook Reel Session Initialized: Video ID {fb_video_id}")
+
+            file_size = os.path.getsize(video_path)
+            with open(video_path, 'rb') as vf:
+                video_bytes = vf.read()
+
+            headers = {
+                'Authorization': f'OAuth {page_access_token}',
+                'offset': '0',
+                'file_size': str(file_size)
+            }
+            up_res = requests.post(upload_url, headers=headers, data=video_bytes, timeout=300)
+            if up_res.status_code == 200:
+                print("[Publisher] Facebook Reel Binary Uploaded successfully.")
+
+                finish_params = {
+                    'upload_phase': 'finish',
+                    'video_id': fb_video_id,
+                    'video_state': 'PUBLISHED',
+                    'description': caption,
+                    'title': title,
+                    'access_token': page_access_token
+                }
+                finish_res = requests.post(init_url, params=finish_params, timeout=60)
+                if finish_res.status_code == 200:
+                    res_data = finish_res.json()
+                    post_id = res_data.get('post_id', fb_video_id)
+                    print(f"🎉 [Facebook] SUCCESS! Published Facebook Reel ID: {fb_video_id} (Post ID: {post_id})")
+                    return {"platform": "facebook", "status": "success", "id": fb_video_id, "post_id": post_id}
+                else:
+                    print(f"[Publisher] Facebook Reels finish status {finish_res.status_code}: {finish_res.text}")
+            else:
+                print(f"[Publisher] Facebook Reels binary upload status {up_res.status_code}: {up_res.text}")
+        else:
+            print(f"[Publisher] Facebook Reels init status {init_res.status_code}: {init_res.text}")
+    except Exception as e:
+        print(f"[Publisher] Facebook video_reels API exception: {e}")
+
+    # Fallback Method 2: Direct Page Videos endpoint with is_reel=True
+    print("[Publisher] Attempting Facebook standard video endpoint fallback...")
+    url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/videos"
     data = {
-        'access_token': access_token,
+        'access_token': page_access_token,
         'description': caption,
         'title': title,
         'is_explicit_share': True,
         'is_reel': True
     }
 
-    with open(video_path, 'rb') as f:
-        files = {'file': f}
-        resp = requests.post(url, data=data, files=files, timeout=300)
+    try:
+        with open(video_path, 'rb') as f:
+            files = {'file': f}
+            resp = requests.post(url, data=data, files=files, timeout=300)
 
-    if resp.status_code == 200:
-        res = resp.json()
-        vid_id = res.get('id')
-        print(f"🎉 [Facebook] SUCCESS! Published Facebook Reel ID: {vid_id}")
-        return {"platform": "facebook", "status": "success", "id": vid_id}
-    else:
-        print("[Publisher] ❌ Facebook upload error:", resp.text)
-        return {"platform": "facebook", "status": "failed", "error": resp.text}
+        if resp.status_code == 200:
+            res = resp.json()
+            vid_id = res.get('id')
+            print(f"🎉 [Facebook] SUCCESS! Published Facebook Reel ID: {vid_id}")
+            return {"platform": "facebook", "status": "success", "id": vid_id}
+        else:
+            print("[Publisher] ❌ Facebook upload fallback error:", resp.text)
+            return {"platform": "facebook", "status": "failed", "error": resp.text}
+    except Exception as e:
+        print(f"[Publisher] Facebook upload fallback exception: {e}")
+        return {"platform": "facebook", "status": "failed", "error": str(e)}
 
 def publish_reel(local_video_path, caption, title):
     print("\n==================================================")
@@ -197,6 +294,7 @@ def publish_reel(local_video_path, caption, title):
     print(f"  Title       : {title}")
     print("==================================================")
 
+    # 1. Resolve authentic Page Access Token
     try:
         page_token = get_page_access_token()
     except Exception as e:
@@ -205,11 +303,15 @@ def publish_reel(local_video_path, caption, title):
 
     verify_token(page_token)
 
+    # 2. Host video on GitHub CDN
     raw_video_url = upload_to_github_raw(local_video_path)
 
+    # 3. Publish to Instagram & Facebook
+    # If META_LONG_LIVED_ACCESS_TOKEN is available, Instagram can use either; pass user token or page token
+    user_token = os.environ.get('META_LONG_LIVED_ACCESS_TOKEN') or page_token
     results = {}
     try:
-        results['instagram'] = publish_to_instagram_reels(raw_video_url, caption, page_token)
+        results['instagram'] = publish_to_instagram_reels(raw_video_url, caption, user_token)
     except Exception as e:
         print(f"[Publisher] Instagram Exception: {e}")
         results['instagram'] = {"platform": "instagram", "status": "error", "message": str(e)}
