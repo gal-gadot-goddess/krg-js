@@ -48,11 +48,29 @@ jobs:
         run: |
           git config --global user.name 'kreggsjs-bot'
           git config --global user.email 'bot@kreggsjs.com'
+          git fetch origin main
+          git checkout origin/main -- history.json || true
+          python -c "
+          import json, os, glob
+          from pathlib import Path
+          hist_file = Path('history.json')
+          history = json.load(open(hist_file)) if hist_file.exists() else []
+          for mf in sorted(glob.glob('output_videos/*_meta.json')):
+              try:
+                  meta = json.load(open(mf))
+                  vf = meta.get('video_file')
+                  if vf and not any(h.get('video_file') == vf for h in history):
+                      history.append(meta)
+              except Exception:
+                  pass
+          with open('history.json', 'w') as f:
+              json.dump(history, f, indent=2)
+          "
           git add history.json
-          if git diff --quiet && git diff --staged --quiet; then
+          if git diff --staged --quiet; then
             echo "No history changes to commit."
           else
-            git commit -m "chore: record daily 3D reel run [skip ci]"
-            git pull --rebase origin main || git rebase --abort
-            git push origin HEAD:main
+            git commit -m "chore: record daily 3D reel run [skip ci]" || true
+            git pull --rebase -X ours origin main || true
+            git push origin HEAD:main || true
           fi
