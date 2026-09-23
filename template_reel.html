@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Three.js Cinematic Reel</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 25%, #100e24 0%, #05040d 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 56px 44px;
+    position: relative;
+    user-select: none;
+  }
+  
+  /* Dynamic ambient glowing neon orbs */
+  .glow-orb-1 {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: -150px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, transparent 70%);
+    filter: blur(120px);
+    pointer-events: none;
+    transition: background 0.5s ease;
+  }
+  .glow-orb-2 {
+    position: absolute;
+    width: 850px;
+    height: 850px;
+    bottom: -150px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+    filter: blur(120px);
+    pointer-events: none;
+    transition: background 0.5s ease;
+  }
+
+  /* Header banner */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    z-index: 10;
+  }
+  .header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+  }
+  .pulse-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 16px #ef4444;
+    animation: livePulse 1.4s infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.7; }
+  }
+
+  .header .category-tag {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    background: rgba(148, 163, 184, 0.12);
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Main Title */
+  .main-title-container {
+    margin-bottom: 24px;
+    z-index: 10;
+  }
+  .main-title {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #38bdf8, #c084fc, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.25;
+  }
+
+  /* Section Title */
+  .section-label {
+    font-size: 23px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+  }
+  .section-label span {
+    color: #38bdf8;
+  }
+
+  /* Section 1: Glassmorphism Code Editor Window */
+  .editor-window {
+    width: 100%;
+    height: 640px;
+    background: rgba(11, 14, 25, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.75), 0 0 35px rgba(56, 189, 248, 0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 28px;
+    z-index: 10;
+  }
+  .editor-titlebar {
+    height: 56px;
+    background: rgba(20, 24, 40, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .window-dots {
+    display: flex;
+    gap: 10px;
+  }
+  .window-dots div {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ff5f56; }
+  .dot-yellow { background: #ffbd2e; }
+  .dot-green { background: #27c93f; }
+  .editor-tab {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 20px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .editor-tab .js-icon {
+    color: #f7df1e;
+    font-weight: 900;
+  }
+
+  /* Auto-Scrolling Code Viewport with smooth top/bottom fade */
+  .editor-body-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding: 24px 28px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0px, black 28px, black calc(100% - 12px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0px, black 28px, black calc(100% - 12px), transparent 100%);
+  }
+  .editor-body {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 21px;
+    line-height: 1.55;
+    color: #e2e8f0;
+    white-space: pre;
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    right: 28px;
+    transition: transform 0.15s ease-out;
+  }
+  .line-num {
+    color: #475569;
+    user-select: none;
+    margin-right: 18px;
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+  }
+  .kw { color: #f43f5e; font-weight: 700; }
+  .fn { color: #38bdf8; font-weight: 600; }
+  .str { color: #a3e635; }
+  .num { color: #fb923c; }
+  .com { color: #64748b; font-style: italic; }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background: #38bdf8;
+    vertical-align: text-bottom;
+    margin-left: 4px;
+    box-shadow: 0 0 12px #38bdf8;
+  }
+
+  /* Section 2: Live 3D WebGL Canvas Card */
+  .preview-card {
+    width: 100%;
+    height: 900px;
+    background: rgba(6, 8, 16, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(168, 85, 247, 0.22);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+  .preview-bar {
+    height: 56px;
+    background: rgba(18, 22, 38, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #94a3b8;
+    flex-shrink: 0;
+  }
+  .fps-badge {
+    color: #10b981;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.15);
+    padding: 4px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  #webglContainer {
+    width: 992px;
+    height: 844px;
+    position: relative;
+    overflow: hidden;
+  }
+  #webglContainer canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #64748b;
+    font-size: 21px;
+    font-weight: 600;
+    z-index: 10;
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e8f0;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-orb-1" id="glowOrb1"></div>
+  <div class="glow-orb-2" id="glowOrb2"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">
+      <div class="pulse-dot"></div>
+      <span>3D WEBGL ENGINE</span>
+    </div>
+    <div class="category-tag" id="categoryTag">ASTROPHYSICS & RELATIVITY</div>
+  </div>
+
+  <!-- Main Viral Title -->
+  <div class="main-title-container">
+    <h1 class="main-title" id="mainTitle">Cosmic Singularity & Gargantua</h1>
+  </div>
+
+  <!-- Section 1: Glassmorphism Code Editor Window -->
+  <div class="section-label">
+    <span>01.</span> <span>ALGORITHMIC THREE.JS SCRIPT</span>
+  </div>
+  <div class="editor-window">
+    <div class="editor-titlebar">
+      <div class="window-dots">
+        <div class="dot-red"></div>
+        <div class="dot-yellow"></div>
+        <div class="dot-green"></div>
+      </div>
+      <div class="editor-tab">
+        <span class="js-icon">JS</span>
+        <span id="tabFileName">black_hole.js</span>
+      </div>
+    </div>
+    <div class="editor-body-wrapper">
+      <div class="editor-body" id="editorBody"></div>
+    </div>
+  </div>
+
+  <!-- Section 2: 3D Live WebGL Canvas -->
+  <div class="section-label">
+    <span>02.</span> <span>REAL-TIME 60 FPS 3D VISUALIZATION</span>
+  </div>
+  <div class="preview-card">
+    <div class="preview-bar">
+      <span id="previewSubtitle">Relativistic Accretion Disk Simulation</span>
+      <span class="fps-badge">60 FPS ACTIVE</span>
+    </div>
+    <div id="webglContainer"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="cta">⚡ Follow @kreggsjs for daily 3D Code</div>
+    <div>1080×1920 • 60 FPS Ultra HD</div>
+  </div>
+
+  <!-- Three.js and modules -->
+  <script src="assets/three.min.js"></script>
+  <script src="variations_engine.js"></script>
+  
+  <!-- Visualizer Modules -->
+  <script src="visualizers/black_hole_gargantua.js"></script>
+  <script src="visualizers/quantum_neural_matrix.js"></script>
+  <script src="visualizers/sacred_merkaba_tesseract.js"></script>
+  <script src="visualizers/cyber_synthwave_highway.js"></script>
+  <script src="visualizers/bioluminescent_jellyfish.js"></script>
+  <script src="visualizers/quantum_dna_helix.js"></script>
+
+  <script>
+    // State variables
+    let currentVisualizer = null;
+    let currentVariation = null;
+    let threeScene = null, threeCamera = null, threeRenderer = null;
+    let currentPlaybackTime = 0.0;
+    let isRealtimeRunning = false;
+    let lastRealtimeTimestamp = 0;
+
+    const webglContainer = document.getElementById('webglContainer');
+    const editorBody = document.getElementById('editorBody');
+
+    // Syntax Highlighting Engine
+    function highlightSyntax(raw) {
+      let text = raw;
+      text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      text = text.replace(/(\/\/.*$)/gm, '<span class="com">$1</span>');
+      text = text.replace(/\b(function|const|let|for|return|var|if|else|new)\b/g, '<span class="kw">$1</span>');
+      text = text.replace(/\b(initSingularity|simulateSynapses|project4Dto3D|renderGridTerrain|updateJellyfishBell|buildDoubleHelix|setAttribute|add|rotateX|rotateY|position|lookAt|set|sin|cos|sqrt|pow|min|max|random)\b/g, '<span class="fn">$1</span>');
+      text = text.replace(/\b(\d+(\.\d+)?)\b/g, '<span class="num">$1</span>');
+      text = text.replace(/('rgba[^']*'|'[^']*')/g, '<span class="str">$1</span>');
+      return text;
+    }
+
+    // Initialize WebGL Three.js Renderer
+    function initThree() {
+      if (threeRenderer) return;
+
+      threeScene = new THREE.Scene();
+      threeCamera = new THREE.PerspectiveCamera(50, 992 / 844, 0.1, 1000);
+      threeCamera.position.z = 15;
+
+      threeRenderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
+      threeRenderer.setSize(992, 844);
+      threeRenderer.setPixelRatio(1);
+      webglContainer.appendChild(threeRenderer.domElement);
+    }
+
+    // Set Active Visualization & Variation
+    window.setVisualization = function(visualizerId, variationIndex = 0) {
+      initThree();
+
+      const viz = window.VISUALIZERS[visualizerId] || window.VISUALIZERS["black_hole_gargantua"];
+      const variation = window.VariationsEngine.createVariation(viz.id, variationIndex);
+
+      currentVisualizer = viz;
+      currentVariation = variation;
+
+      // Update DOM
+      document.getElementById('mainTitle').innerText = variation.title;
+      document.getElementById('categoryTag').innerText = variation.category;
+      document.getElementById('tabFileName').innerText = variation.fileName;
+      document.getElementById('previewSubtitle').innerText = `${viz.title} (${variation.paletteName})`;
+
+      // Dynamic ambient glow
+      document.getElementById('glowOrb1').style.background = `radial-gradient(circle, ${variation.bgGlow} 0%, transparent 70%)`;
+
+      // Initialize 3D scene with variation parameters
+      viz.init(THREE, threeScene, threeCamera, threeRenderer, variation.params);
+
+      // Seek to t = 0
+      window.setSeekTime(0.0);
+    };
+
+    // Frame-Accurate Deterministic Seek Function
+    window.setSeekTime = function(t) {
+      if (!currentVisualizer || !currentVariation) return;
+      currentPlaybackTime = t;
+
+      // 1. Code auto-typing and auto-scrolling calculation
+      const fullCode = currentVariation.displayCode;
+      const typingDuration = 6.5; // Complete typing over 6.5 seconds
+      const progress = Math.min(1.0, t / typingDuration);
+      const charCount = Math.floor(fullCode.length * progress);
+      const visibleText = fullCode.substring(0, charCount);
+
+      const lines = visibleText.split('\n');
+      let htmlLines = lines.map((ln, idx) => {
+        const lineNum = '<span class="line-num">' + (idx + 1) + '</span>';
+        return lineNum + highlightSyntax(ln);
+      }).join('\n');
+
+      htmlLines += '<span class="cursor"></span>';
+      editorBody.innerHTML = htmlLines;
+
+      // Smooth auto-scroll UP so active line stays visible
+      const lineHeight = 32.5;
+      const maxVisibleLines = 14;
+      const currentLineCount = lines.length;
+
+      if (currentLineCount > maxVisibleLines) {
+        const overflow = currentLineCount - maxVisibleLines;
+        const translateY = -(overflow * lineHeight);
+        editorBody.style.transform = `translateY(${translateY}px)`;
+      } else {
+        editorBody.style.transform = 'translateY(0px)';
+      }
+
+      // 2. Render 3D Three.js frame
+      currentVisualizer.render(THREE, threeScene, threeCamera, threeRenderer, t, currentVariation.params);
+    };
+
+    // Real-Time Playback Loop (for live browser viewing)
+    function realtimeLoop(timestamp) {
+      if (!isRealtimeRunning) return;
+      if (!lastRealtimeTimestamp) lastRealtimeTimestamp = timestamp;
+
+      const delta = (timestamp - lastRealtimeTimestamp) / 1000.0;
+      lastRealtimeTimestamp = timestamp;
+
+      currentPlaybackTime += delta;
+      window.setSeekTime(currentPlaybackTime);
+
+      requestAnimationFrame(realtimeLoop);
+    }
+
+    window.startRealtimePlayback = function() {
+      if (isRealtimeRunning) return;
+      isRealtimeRunning = true;
+      lastRealtimeTimestamp = 0;
+      requestAnimationFrame(realtimeLoop);
+    };
+
+    // Auto-parse URL query parameters (e.g. ?visualizer=black_hole_gargantua&var=2)
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const vizId = params.get('visualizer') || 'black_hole_gargantua';
+      const varIdx = parseInt(params.get('var') || '0', 10);
+
+      window.setVisualization(vizId, varIdx);
+      window.startRealtimePlayback();
+    });
+  </script>
+</body>
+</html>

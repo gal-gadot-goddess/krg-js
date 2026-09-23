@@ -1,9 +1,9 @@
-name: Daily Autonomous JS Reel Generator
+name: Daily 3D Three.js Reel Generator & Publisher
 
 on:
   schedule:
-    - cron: '0 10 * * *'  # Runs daily at 10:00 AM UTC (3:30 PM IST)
-  workflow_dispatch:      # Allows manual trigger anytime with 1-click
+    - cron: '0 5,12,18 * * *'  # Runs 3 times daily: 5:00 AM, 12:00 PM, 6:00 PM UTC
+  workflow_dispatch:          # Allows manual trigger anytime with 1-click
 
 permissions:
   contents: write
@@ -19,37 +19,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Setup Python 3.10
+      - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pip'
 
-      - name: Install System Dependencies (FFmpeg & Chrome libs)
+      - name: Install System Dependencies (FFmpeg)
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libgbm-dev libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2t64
+          sudo apt-get install -y ffmpeg
 
-      - name: Install Node Dependencies
-        run: npm install
+      - name: Install Python Dependencies & Chromium
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
 
-      - name: Install Python Dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Daily Reel Generator & Publisher
+      - name: Run Daily 3D Reel Generator & Meta Publisher
         env:
           FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
-          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
+          META_LONG_LIVED_ACCESS_TOKEN: ${{ secrets.META_LONG_LIVED_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node daily_reel_runner.js
+        run: python generate_daily_reel.py --duration 12 --fps 60
 
       - name: Sync History to GitHub
         run: |
@@ -59,7 +52,7 @@ jobs:
           if git diff --quiet && git diff --staged --quiet; then
             echo "No history changes to commit."
           else
-            git commit -m "chore: record daily reel run [skip ci]"
+            git commit -m "chore: record daily 3D reel run [skip ci]"
             git pull --rebase origin main || git rebase --abort
             git push origin HEAD:main
           fi

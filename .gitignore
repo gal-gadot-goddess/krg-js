@@ -5,5 +5,7 @@ temp_audio.wav
 /*.mp4
 *.png
 __pycache__/
+output_videos/
+_temp_*
 !videos/
 !videos/*.mp4
