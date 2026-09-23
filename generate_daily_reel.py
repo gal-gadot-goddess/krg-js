@@ -131,7 +131,8 @@ def main():
         except Exception:
             pass
 
-    should_publish = args.publish or (bool(os.environ.get("FACEBOOK_ACCESS_TOKEN")) and not args.batch)
+    has_token = bool(os.environ.get("FACEBOOK_ACCESS_TOKEN")) or bool(os.environ.get("META_LONG_LIVED_ACCESS_TOKEN"))
+    should_publish = args.publish or (has_token and not args.batch)
     if should_publish:
         print("\n🚀 Invoking Meta Graph API Publisher for Instagram & Facebook Reels...")
         try:

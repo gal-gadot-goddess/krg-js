@@ -42,7 +42,7 @@ jobs:
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
           META_LONG_LIVED_ACCESS_TOKEN: ${{ secrets.META_LONG_LIVED_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python generate_daily_reel.py --duration 12 --fps 60
+        run: python generate_daily_reel.py --duration 12 --fps 60 --publish
 
       - name: Sync History to GitHub
         run: |
