@@ -21,14 +21,17 @@ if sys.platform == "win32":
 
 from render_reel import render_reel, GENRE_MAP, TITLE_MAP
 
-AVAILABLE_VISUALIZERS = [
-    "black_hole_gargantua",
-    "quantum_neural_matrix",
-    "sacred_merkaba_tesseract",
-    "cyber_synthwave_highway",
-    "bioluminescent_jellyfish",
-    "quantum_dna_helix"
-]
+def load_catalog_visualizers(p_dir):
+    c_path = p_dir / "visualizers_catalog.json"
+    if c_path.exists():
+        try:
+            with open(c_path, "r", encoding="utf-8") as _f:
+                return [x["id"] for x in json.load(_f)]
+        except Exception:
+            pass
+    return ["black_hole_gargantua", "quantum_neural_matrix", "sacred_merkaba_tesseract"]
+
+AVAILABLE_VISUALIZERS = load_catalog_visualizers(Path(__file__).parent.resolve())
 
 def load_history(history_file):
     if history_file.exists():

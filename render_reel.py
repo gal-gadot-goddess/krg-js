@@ -25,23 +25,18 @@ from playwright.sync_api import sync_playwright
 # Import local audio synthesizer
 from audio_synth import generate_audio
 
-GENRE_MAP = {
-    "black_hole_gargantua": "cosmic",
-    "quantum_neural_matrix": "cyber",
-    "sacred_merkaba_tesseract": "sacred",
-    "cyber_synthwave_highway": "synthwave",
-    "bioluminescent_jellyfish": "lofi",
-    "quantum_dna_helix": "cyber"
-}
+PROJECT_DIR = Path(__file__).parent.resolve()
+CATALOG_FILE = PROJECT_DIR / "visualizers_catalog.json"
+CATALOG = []
+if CATALOG_FILE.exists():
+    try:
+        with open(CATALOG_FILE, "r", encoding="utf-8") as _cf:
+            CATALOG = json.load(_cf)
+    except Exception:
+        CATALOG = []
 
-TITLE_MAP = {
-    "black_hole_gargantua": "Cosmic Singularity & Gargantua",
-    "quantum_neural_matrix": "Quantum Neural Synapse Matrix",
-    "sacred_merkaba_tesseract": "4D Tesseract & Sacred Merkaba",
-    "cyber_synthwave_highway": "Synthwave Grid & Neon Sun",
-    "bioluminescent_jellyfish": "Bioluminescent Abyssal Jellyfish",
-    "quantum_dna_helix": "Quantum DNA Double Helix"
-}
+GENRE_MAP = {item["id"]: item.get("genre", "cosmic") for item in CATALOG}
+TITLE_MAP = {item["id"]: item.get("title", item["id"]) for item in CATALOG}
 
 def render_reel(visualizer_id="black_hole_gargantua", variation_index=0, duration_sec=12, fps=60, output_dir=None):
     project_dir = Path(__file__).parent.resolve()

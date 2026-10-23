@@ -412,11 +412,23 @@ function buildDoubleHelix(length = 26, turns = ${turns}) {
       }
 
       default: {
-        baseTitle = visualizerId;
-        category = "Creative Coding";
-        fileName = "algorithm.js";
-        customCodeSnippet = "// 3D WebGL Algorithmic Visualizer";
-        caption = "#threejs #webgl #creativecoding #reels";
+        const vizDef = (typeof window !== 'undefined' && window.VISUALIZERS && window.VISUALIZERS[visualizerId]) ? window.VISUALIZERS[visualizerId] : null;
+        if (vizDef) {
+          baseTitle = vizDef.title || visualizerId;
+          category = vizDef.category || "Creative Coding";
+          fileName = vizDef.fileName || `${visualizerId}.js`;
+          customCodeSnippet = vizDef.displayCode || "// 3D Three.js Visualizer";
+          caption = vizDef.caption || "#threejs #webgl #creativecoding #reels";
+          if (vizDef.defaultParams) {
+            specificParams = Object.assign({}, vizDef.defaultParams);
+          }
+        } else {
+          baseTitle = visualizerId;
+          category = "Creative Coding";
+          fileName = "algorithm.js";
+          customCodeSnippet = "// 3D WebGL Algorithmic Visualizer";
+          caption = "#threejs #webgl #creativecoding #reels";
+        }
       }
     }
 

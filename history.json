@@ -2524,5 +2524,11 @@
       "shorts"
     ],
     "description": "\u26a1 Procedural 3D WebGL Visualization: Bioluminescent Abyssal Jellyfish rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
+  },
+  {
+    "visualizer_id": "lorenz_butterfly_attractor",
+    "variation_index": 0,
+    "timestamp": "2026-10-24T04:28:32.160793",
+    "video_file": "reel_lorenz_butterfly_attractor_var_1.mp4"
   }
 ]

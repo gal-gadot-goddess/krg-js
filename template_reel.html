@@ -396,30 +396,55 @@
       webglContainer.appendChild(threeRenderer.domElement);
     }
 
+    function loadVisualizerModule(vizId, callback) {
+      if (window.VISUALIZERS && window.VISUALIZERS[vizId]) {
+        callback(window.VISUALIZERS[vizId]);
+        return;
+      }
+      const s = document.createElement('script');
+      s.src = `visualizers/${vizId}.js`;
+      s.onload = () => {
+        if (window.VISUALIZERS && window.VISUALIZERS[vizId]) {
+          callback(window.VISUALIZERS[vizId]);
+        } else {
+          console.warn("Visualizer not found in window.VISUALIZERS, falling back:", vizId);
+          callback(window.VISUALIZERS["black_hole_gargantua"]);
+        }
+      };
+      s.onerror = (e) => {
+        console.error("Failed to load visualizer script:", vizId, e);
+        callback(window.VISUALIZERS["black_hole_gargantua"]);
+      };
+      document.head.appendChild(s);
+    }
+
     // Set Active Visualization & Variation
-    window.setVisualization = function(visualizerId, variationIndex = 0) {
+    window.setVisualization = function(visualizerId, variationIndex = 0, onReady) {
       initThree();
 
-      const viz = window.VISUALIZERS[visualizerId] || window.VISUALIZERS["black_hole_gargantua"];
-      const variation = window.VariationsEngine.createVariation(viz.id, variationIndex);
+      loadVisualizerModule(visualizerId, (viz) => {
+        const variation = window.VariationsEngine.createVariation(viz.id, variationIndex);
 
-      currentVisualizer = viz;
-      currentVariation = variation;
+        currentVisualizer = viz;
+        currentVariation = variation;
 
-      // Update DOM
-      document.getElementById('mainTitle').innerText = variation.title;
-      document.getElementById('categoryTag').innerText = variation.category;
-      document.getElementById('tabFileName').innerText = variation.fileName;
-      document.getElementById('previewSubtitle').innerText = `${viz.title} (${variation.paletteName})`;
+        // Update DOM
+        document.getElementById('mainTitle').innerText = variation.title;
+        document.getElementById('categoryTag').innerText = variation.category;
+        document.getElementById('tabFileName').innerText = variation.fileName;
+        document.getElementById('previewSubtitle').innerText = `${viz.title} (${variation.paletteName})`;
 
-      // Dynamic ambient glow
-      document.getElementById('glowOrb1').style.background = `radial-gradient(circle, ${variation.bgGlow} 0%, transparent 70%)`;
+        // Dynamic ambient glow
+        document.getElementById('glowOrb1').style.background = `radial-gradient(circle, ${variation.bgGlow} 0%, transparent 70%)`;
 
-      // Initialize 3D scene with variation parameters
-      viz.init(THREE, threeScene, threeCamera, threeRenderer, variation.params);
+        // Initialize 3D scene with variation parameters
+        viz.init(THREE, threeScene, threeCamera, threeRenderer, variation.params);
 
-      // Seek to t = 0
-      window.setSeekTime(0.0);
+        // Seek to t = 0
+        window.setSeekTime(0.0);
+
+        if (typeof onReady === 'function') onReady();
+      });
     };
 
     // Frame-Accurate Deterministic Seek Function
@@ -487,8 +512,9 @@
       const vizId = params.get('visualizer') || 'black_hole_gargantua';
       const varIdx = parseInt(params.get('var') || '0', 10);
 
-      window.setVisualization(vizId, varIdx);
-      window.startRealtimePlayback();
+      window.setVisualization(vizId, varIdx, () => {
+        window.startRealtimePlayback();
+      });
     });
   </script>
 </body>
