@@ -65,10 +65,11 @@ def render_reel(visualizer_id="black_hole_gargantua", variation_index=0, duratio
     print("==================================================")
     print(f"  🎬 Rendering 3D Three.js Cinematic Reel")
     print(f"  Visualizer   : {visualizer_id}")
+    print(f"  Title        : {title}")
     print(f"  Variation    : #{variation_index + 1}")
     print(f"  Audio Genre  : {genre}")
     print(f"  Duration     : {duration_sec}s @ {fps} FPS")
-    print(f"  Resolution   : 1080 x 1920 (9:16 Vertical Video)")
+    print(f"  Resolution   : 1080 x 1920 (9:16 Vertical Full-Screen)")
     print(f"  Output MP4   : {output_mp4.name}")
     print("==================================================")
 
@@ -101,19 +102,23 @@ def render_reel(visualizer_id="black_hole_gargantua", variation_index=0, duratio
         page = context.new_page()
         page.goto(url)
 
-        # Wait for Three.js & assets to settle
-        time.sleep(1.0)
+        # Wait for Three.js & assets to settle and window.__READY__
+        try:
+            page.wait_for_function("() => window.__READY__ === true", timeout=12000)
+        except Exception:
+            time.sleep(2.0)
 
-        # Capture high-res preview thumbnail at t = 3.5s
-        time.sleep(2.5)
+        # Allow visualizer warmup
+        time.sleep(1.5)
+
+        # Capture high-res preview thumbnail
         page.screenshot(path=str(output_png))
         print(f"      Captured preview thumbnail -> {output_png.name}")
 
-        # Capture video for remaining duration
+        # Capture video for full duration_sec
         start_time = time.time()
-        remaining_sec = max(1.0, duration_sec - 3.5)
-        while time.time() - start_time < remaining_sec:
-            elapsed = time.time() - start_time + 3.5
+        while time.time() - start_time < duration_sec:
+            elapsed = time.time() - start_time
             print(f"\r      Capturing: {elapsed:.1f}s / {duration_sec:.1f}s ({(elapsed/duration_sec*100):.0f}%)", end="", flush=True)
             time.sleep(0.5)
 
@@ -131,8 +136,11 @@ def render_reel(visualizer_id="black_hole_gargantua", variation_index=0, duratio
     latest_webm = max(recorded_webms, key=os.path.getctime)
     print("[3/4] Muxing video & audio to High-Bitrate H.264 MP4 with FFmpeg...")
 
+    # Fast-forward 2.0 seconds into the recording to skip Chromium page load
     ffmpeg_cmd = [
         "ffmpeg", "-y",
+        "-ss", "2.0",
+        "-t", str(duration_sec),
         "-i", str(latest_webm),
         "-i", str(temp_audio),
         "-c:v", "libx264",
@@ -174,7 +182,7 @@ def render_reel(visualizer_id="black_hole_gargantua", variation_index=0, duratio
         ],
         "category": "Science & Technology",
         "duration_sec": duration_sec,
-        "resolution": "1080x1920 (9:16)",
+        "resolution": "1080x1920 (9:16 Full-Screen)",
         "fps": fps,
         "video_file": output_mp4.name,
         "preview_image": output_png.name,
