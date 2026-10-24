@@ -25,7 +25,7 @@
     width: 1080px;
     height: 1920px;
     z-index: 1;
-    background: radial-gradient(circle at 50% 50%, #080918 0%, #030208 100%);
+    background: radial-gradient(circle at 50% 50%, #070818 0%, #020206 100%);
     overflow: hidden;
   }
   #webglContainer canvas {
@@ -37,24 +37,24 @@
   /* Dynamic ambient glowing neon orbs */
   .glow-orb-1 {
     position: absolute;
-    width: 900px;
-    height: 900px;
-    top: -200px;
-    left: -200px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
-    filter: blur(140px);
+    width: 1000px;
+    height: 1000px;
+    top: -250px;
+    left: -250px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, transparent 70%);
+    filter: blur(150px);
     pointer-events: none;
     z-index: 2;
     transition: background 0.8s ease;
   }
   .glow-orb-2 {
     position: absolute;
-    width: 950px;
-    height: 950px;
-    bottom: -200px;
-    right: -200px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, transparent 70%);
-    filter: blur(140px);
+    width: 1050px;
+    height: 1050px;
+    bottom: -250px;
+    right: -250px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.28) 0%, transparent 70%);
+    filter: blur(150px);
     pointer-events: none;
     z-index: 2;
     transition: background 0.8s ease;
@@ -66,7 +66,7 @@
     inset: 0;
     width: 1080px;
     height: 1920px;
-    background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(2, 2, 6, 0.65) 100%);
+    background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(2, 2, 6, 0.75) 100%);
     pointer-events: none;
     z-index: 3;
   }
@@ -89,7 +89,7 @@
   .top-hud {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
   }
 
   .header-bar {
@@ -104,26 +104,26 @@
     gap: 12px;
     padding: 10px 24px;
     border-radius: 999px;
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    backdrop-filter: blur(16px);
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    backdrop-filter: blur(20px);
     font-size: 20px;
     font-weight: 800;
     letter-spacing: 2.5px;
     color: #38bdf8;
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.35);
   }
   .pulse-dot {
     width: 14px;
     height: 14px;
     border-radius: 50%;
     background: #ef4444;
-    box-shadow: 0 0 16px #ef4444;
+    box-shadow: 0 0 18px #ef4444;
     animation: livePulse 1.4s infinite;
   }
   @keyframes livePulse {
     0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.7; }
+    50% { transform: scale(1.35); opacity: 0.65; }
   }
 
   .category-pill {
@@ -132,27 +132,28 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #cbd5e1;
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(15, 23, 42, 0.8);
     padding: 10px 24px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
 
   /* Hero Title with Neon Glow */
   .hero-title-box {
-    margin-top: 8px;
+    margin-top: 6px;
   }
   .hero-title {
     font-size: 46px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     background: linear-gradient(135deg, #ffffff 0%, #38bdf8 45%, #c084fc 80%, #f43f5e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.9));
+    filter: drop-shadow(0 4px 25px rgba(0, 0, 0, 0.95));
   }
   .hero-subtitle {
     font-size: 22px;
@@ -165,51 +166,166 @@
     gap: 16px;
   }
   .fps-pill {
-    background: rgba(16, 185, 129, 0.2);
-    border: 1px solid rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.25);
+    border: 1px solid rgba(16, 185, 129, 0.5);
     color: #34d399;
     padding: 4px 14px;
     border-radius: 999px;
     font-weight: 800;
     font-size: 18px;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Holographic Sci-Fi Telemetry Reticle (Middle-Right) */
+  .hologram-hud {
+    position: absolute;
+    right: 48px;
+    top: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .reticle-container {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reticle-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed rgba(56, 189, 248, 0.45);
+    animation: rotateClockwise 20s linear infinite;
+  }
+  .reticle-inner {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    border: 1px solid rgba(192, 132, 252, 0.5);
+    border-top-color: transparent;
+    animation: rotateCounterClockwise 10s linear infinite;
+  }
+  .reticle-crosshair {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #38bdf8;
+  }
+  @keyframes rotateClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes rotateCounterClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  .telemetry-readout {
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 15px;
+    color: #38bdf8;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 6px 14px;
+    border-radius: 8px;
+    border-left: 3px solid #38bdf8;
+    backdrop-filter: blur(12px);
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
   }
 
   /* Bottom HUD Section */
   .bottom-hud {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 18px;
+  }
+
+  /* Audio Spectrum Visualizer Bar Container */
+  .spectrum-container {
+    width: 100%;
+    height: 48px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 14px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+  }
+  .spectrum-label {
+    font-family: 'Consolas', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .spectrum-label span.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+  }
+  .spectrum-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 32px;
+  }
+  .eq-bar {
+    width: 8px;
+    height: 8px;
+    min-height: 4px;
+    background: linear-gradient(to top, #38bdf8, #c084fc, #f43f5e);
+    border-radius: 4px;
+    transition: height 0.05s ease;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
   }
 
   /* Floating Glass Code Card */
   .code-glass-card {
     width: 100%;
-    background: rgba(6, 10, 24, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 26px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(56, 189, 248, 0.18);
+    background: rgba(6, 10, 24, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(56, 189, 248, 0.2);
     backdrop-filter: blur(24px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
   .code-titlebar {
-    height: 52px;
-    background: rgba(15, 23, 42, 0.92);
+    height: 48px;
+    background: rgba(15, 23, 42, 0.95);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 20px;
     position: relative;
     justify-content: space-between;
   }
   .window-dots {
     display: flex;
-    gap: 10px;
+    gap: 8px;
   }
   .window-dots div {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
   }
   .dot-red { background: #ff5f56; }
@@ -218,53 +334,53 @@
 
   .editor-tab {
     font-family: 'Consolas', 'Fira Code', monospace;
-    font-size: 20px;
+    font-size: 18px;
     color: #cbd5e1;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
   .editor-tab .js-icon {
     color: #f7df1e;
     font-weight: 900;
   }
   .badge-tag {
-    font-size: 17px;
+    font-size: 15px;
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.15);
-    padding: 4px 12px;
-    border-radius: 8px;
+    padding: 3px 10px;
+    border-radius: 6px;
     font-weight: 700;
     letter-spacing: 1px;
   }
 
   /* Code Viewport */
   .code-body-wrapper {
-    height: 240px;
+    height: 200px;
     overflow: hidden;
     position: relative;
-    padding: 20px 28px;
+    padding: 16px 24px;
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
   }
   .editor-body {
     font-family: 'Fira Code', 'Consolas', monospace;
-    font-size: 21px;
-    line-height: 1.5;
+    font-size: 19px;
+    line-height: 1.45;
     color: #f1f5f9;
     white-space: pre;
     position: absolute;
-    top: 20px;
-    left: 28px;
-    right: 28px;
+    top: 16px;
+    left: 24px;
+    right: 24px;
     transition: transform 0.15s ease-out;
   }
   .line-num {
     color: #64748b;
     user-select: none;
-    margin-right: 18px;
+    margin-right: 16px;
     display: inline-block;
-    width: 28px;
+    width: 24px;
     text-align: right;
   }
   .kw { color: #f43f5e; font-weight: 700; }
@@ -274,8 +390,8 @@
   .com { color: #94a3b8; font-style: italic; }
   .cursor {
     display: inline-block;
-    width: 10px;
-    height: 22px;
+    width: 9px;
+    height: 20px;
     background: #38bdf8;
     vertical-align: text-bottom;
     margin-left: 4px;
@@ -288,7 +404,7 @@
     justify-content: space-between;
     align-items: center;
     color: #94a3b8;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 700;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
   }
@@ -297,22 +413,22 @@
     align-items: center;
     gap: 12px;
     color: #f8fafc;
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(15, 23, 42, 0.8);
     padding: 10px 24px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
   }
   .cta-badge span.bolt {
     color: #facc15;
     font-size: 24px;
   }
   .res-badge {
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(15, 23, 42, 0.8);
     padding: 10px 24px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
     color: #e2e8f0;
     letter-spacing: 1px;
   }
@@ -326,6 +442,20 @@
   <div class="glow-orb-1" id="glowOrb1"></div>
   <div class="glow-orb-2" id="glowOrb2"></div>
   <div class="vignette-overlay"></div>
+
+  <!-- Holographic Sci-Fi Telemetry Reticle -->
+  <div class="hologram-hud">
+    <div class="reticle-container">
+      <div class="reticle-outer"></div>
+      <div class="reticle-inner"></div>
+      <div class="reticle-crosshair"></div>
+    </div>
+    <div class="telemetry-readout" id="telemetryBox">
+      <div>SYS: HDR-GLOW</div>
+      <div>FPS: 60.0 ULTRA</div>
+      <div id="hudCoords">T: 0.00s</div>
+    </div>
+  </div>
 
   <!-- Cinematic Floating Glass HUD -->
   <div class="hud-layer">
@@ -349,6 +479,18 @@
 
     <!-- Bottom HUD -->
     <div class="bottom-hud">
+      <!-- Audio Spectrum Visualizer -->
+      <div class="spectrum-container">
+        <div class="spectrum-label">
+          <span class="dot"></span>
+          <span>AUDIO FREQUENCY SPECTRUM</span>
+        </div>
+        <div class="spectrum-bars" id="spectrumBars">
+          <!-- 28 Equalizer Bars -->
+        </div>
+      </div>
+
+      <!-- Code Glass Card -->
       <div class="code-glass-card">
         <div class="code-titlebar">
           <div class="window-dots">
@@ -372,13 +514,14 @@
           <span class="bolt">⚡</span>
           <span>Follow @kreggsjs for daily 3D Code Art</span>
         </div>
-        <div class="res-badge">1080×1920 • 60 FPS</div>
+        <div class="res-badge">1080×1920 • 60 FPS HDR</div>
       </div>
     </div>
   </div>
 
-  <!-- Three.js and core modules -->
+  <!-- Three.js, Postprocessing, and Variations Engine -->
   <script src="assets/three.min.js"></script>
+  <script src="assets/postprocessing.bundle.js"></script>
   <script src="variations_engine.js"></script>
 
   <script>
@@ -386,25 +529,34 @@
     let currentVisualizer = null;
     let currentVariation = null;
     let threeScene = null, threeCamera = null, threeRenderer = null;
+    let threeComposer = null, threeBloomPass = null;
     let currentPlaybackTime = 0.0;
     let isRealtimeRunning = false;
     let lastRealtimeTimestamp = 0;
 
     const webglContainer = document.getElementById('webglContainer');
     const editorBody = document.getElementById('editorBody');
+    const spectrumBarsContainer = document.getElementById('spectrumBars');
+
+    // Populate 28 Spectrum EQ Bars
+    const EQ_BAR_COUNT = 28;
+    const eqBars = [];
+    for (let i = 0; i < EQ_BAR_COUNT; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'eq-bar';
+      spectrumBarsContainer.appendChild(bar);
+      eqBars.push(bar);
+    }
 
     // Syntax Highlighting Engine (Token-safe)
     function highlightSyntax(raw) {
       if (!raw) return '';
-      // Escape HTML entities
       let text = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       
-      // If full comment line
       if (/^\s*\/\//.test(text)) {
         return `<span class="com">${text}</span>`;
       }
       
-      // Separate trailing comments
       let commentPart = '';
       const cIdx = text.indexOf('//');
       if (cIdx !== -1) {
@@ -412,29 +564,21 @@
         text = text.substring(0, cIdx);
       }
 
-      // Hide string literals with markers
       const strings = [];
       text = text.replace(/('.*?'|".*?"|`.*?`)/g, (m) => {
         strings.push(m);
         return `___STR${strings.length - 1}___`;
       });
 
-      // Highlight keywords
       text = text.replace(/\b(function|const|let|var|return|if|else|new|for|while|class|import|from|export|default)\b/g, '<span class="kw">$1</span>');
-
-      // Highlight function calls
       text = text.replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)(?=\s*\()/g, '<span class="fn">$1</span>');
-
-      // Highlight numeric constants
       text = text.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="num">$1</span>');
-
-      // Restore string literals
       text = text.replace(/___STR(\d+)___/g, (_, idx) => `<span class="str">${strings[parseInt(idx, 10)]}</span>`);
 
       return text + commentPart;
     }
 
-    // Initialize WebGL Three.js Renderer (Full 1080x1920 screen)
+    // Initialize WebGL Three.js Renderer with ACESFilmic Tone Mapping and UnrealBloomPass
     function initThree() {
       if (threeRenderer) return;
 
@@ -449,8 +593,125 @@
       });
       threeRenderer.setSize(1080, 1920);
       threeRenderer.setPixelRatio(1);
-      threeRenderer.setClearColor(0x030208, 1);
+      threeRenderer.setClearColor(0x020207, 1);
+      threeRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+      threeRenderer.toneMappingExposure = 1.3;
       webglContainer.appendChild(threeRenderer.domElement);
+
+      // EffectComposer + UnrealBloomPass Setup
+      threeComposer = new THREE.EffectComposer(threeRenderer);
+      const renderPass = new THREE.RenderPass(threeScene, threeCamera);
+      threeComposer.addPass(renderPass);
+
+      threeBloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(1080, 1920),
+        1.5,  // bloom strength
+        0.42, // bloom radius
+        0.18  // bloom threshold
+      );
+      threeComposer.addPass(threeBloomPass);
+
+      // Transparently intercept renderer.render() to invoke threeComposer.render() without recursion
+      let isInsideComposer = false;
+      const origRender = threeRenderer.render.bind(threeRenderer);
+      threeRenderer.render = function(s, c) {
+        if (window.__USE_BLOOM__ && threeComposer && !isInsideComposer) {
+          isInsideComposer = true;
+          try {
+            threeComposer.render();
+          } finally {
+            isInsideComposer = false;
+          }
+        } else {
+          origRender(s, c);
+        }
+      };
+      window.__USE_BLOOM__ = true;
+    }
+
+    // Cosmic Atmosphere & Dynamic Studio Lighting Injection
+    function setupCosmicAtmosphere(scene, params) {
+      // 1. Studio Lights for vibrant highlights and Fresnel edges
+      const lightGroup = new THREE.Group();
+      lightGroup.name = "__ENV_LIGHTS__";
+
+      const pCol = params.primaryColor || [0.3, 0.8, 1.0];
+      const sCol = params.secondaryColor || [1.0, 0.2, 0.8];
+
+      const cKey = new THREE.Color(pCol[0], pCol[1], pCol[2]);
+      const cRim = new THREE.Color(sCol[0], sCol[1], sCol[2]);
+
+      const keyLight = new THREE.PointLight(cKey, 4.5, 120);
+      keyLight.position.set(16, 20, 18);
+      lightGroup.add(keyLight);
+
+      const rimLight = new THREE.PointLight(cRim, 4.0, 120);
+      rimLight.position.set(-18, -16, -14);
+      lightGroup.add(rimLight);
+
+      const fillLight = new THREE.AmbientLight(0x282845, 1.5);
+      lightGroup.add(fillLight);
+
+      scene.add(lightGroup);
+
+      // 2. Multi-layer Cosmic Starfield & Nebula Dust
+      const starCount = 3200;
+      const starGeo = new THREE.BufferGeometry();
+      const starPos = new Float32Array(starCount * 3);
+      const starCol = new Float32Array(starCount * 3);
+
+      for (let i = 0; i < starCount; i++) {
+        const r = 28 + Math.random() * 65;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        starPos[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+        starPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        starPos[i * 3 + 2] = r * Math.cos(phi);
+
+        const rnd = Math.random();
+        if (rnd < 0.42) {
+          starCol[i * 3]     = pCol[0];
+          starCol[i * 3 + 1] = pCol[1];
+          starCol[i * 3 + 2] = pCol[2];
+        } else if (rnd < 0.72) {
+          starCol[i * 3]     = sCol[0];
+          starCol[i * 3 + 1] = sCol[1];
+          starCol[i * 3 + 2] = sCol[2];
+        } else if (rnd < 0.88) {
+          // Golden starlight
+          starCol[i * 3]     = 1.0;
+          starCol[i * 3 + 1] = 0.88;
+          starCol[i * 3 + 2] = 0.45;
+        } else {
+          // Intense pure white
+          starCol[i * 3]     = 1.0;
+          starCol[i * 3 + 1] = 1.0;
+          starCol[i * 3 + 2] = 1.0;
+        }
+      }
+      starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+      starGeo.setAttribute('color', new THREE.BufferAttribute(starCol, 3));
+
+      const starMat = new THREE.PointsMaterial({
+        size: 1.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+      const stars = new THREE.Points(starGeo, starMat);
+      stars.name = "__ENV_STARS__";
+      scene.add(stars);
+
+      // 3. Make visualizer objects scale up to command the screen
+      scene.children.forEach(c => {
+        if (c !== lightGroup && c !== stars) {
+          c.scale.multiplyScalar(1.22);
+        }
+      });
+
+      window.__ENV_DATA__ = { lightGroup, keyLight, rimLight, stars };
     }
 
     function loadVisualizerModule(vizId, callback) {
@@ -501,6 +762,9 @@
         // Initialize 3D scene with variation parameters
         viz.init(THREE, threeScene, threeCamera, threeRenderer, variation.params);
 
+        // Inject cosmic environment, studio lights, and scale
+        setupCosmicAtmosphere(threeScene, variation.params);
+
         // Enforce 1080x1920 aspect ratio
         threeCamera.aspect = 1080 / 1920;
         threeCamera.updateProjectionMatrix();
@@ -535,8 +799,8 @@
       htmlLines += '<span class="cursor"></span>';
       editorBody.innerHTML = htmlLines;
 
-      const lineHeight = 31.5;
-      const maxVisibleLines = 7;
+      const lineHeight = 28.0;
+      const maxVisibleLines = 6;
       const currentLineCount = lines.length;
 
       if (currentLineCount > maxVisibleLines) {
@@ -547,7 +811,38 @@
         editorBody.style.transform = 'translateY(0px)';
       }
 
-      // 2. Render 3D Three.js frame
+      // 2. Animate Audio Spectrum EQ Bars (deterministic pseudo-reactive)
+      for (let k = 0; k < EQ_BAR_COUNT; k++) {
+        const freq1 = Math.sin(t * 7.5 + k * 0.45) * 0.5 + 0.5;
+        const freq2 = Math.cos(t * 11.2 + k * 0.75) * 0.5 + 0.5;
+        const freq3 = Math.sin(t * 16.0 + k * 1.2) * 0.5 + 0.5;
+        const h = 4 + Math.floor((freq1 * 0.5 + freq2 * 0.3 + freq3 * 0.2) * 26);
+        eqBars[k].style.height = `${h}px`;
+      }
+
+      // 3. Update Sci-Fi Telemetry Readout
+      const hudCoords = document.getElementById('hudCoords');
+      if (hudCoords) {
+        const phaseVal = ((t * 45) % 360).toFixed(1);
+        hudCoords.innerText = `T: ${t.toFixed(2)}s // θ: ${phaseVal}°`;
+      }
+
+      // 4. Animate Cosmic Atmosphere and Studio Lights
+      if (window.__ENV_DATA__) {
+        const env = window.__ENV_DATA__;
+        if (env.stars) {
+          env.stars.rotation.y = t * 0.05;
+          env.stars.rotation.x = t * 0.025;
+        }
+        if (env.keyLight && env.rimLight) {
+          env.keyLight.position.x = Math.sin(t * 0.9) * 20;
+          env.keyLight.position.z = Math.cos(t * 0.9) * 20;
+          env.rimLight.position.x = -Math.sin(t * 0.9) * 20;
+          env.rimLight.position.z = -Math.cos(t * 0.9) * 20;
+        }
+      }
+
+      // 5. Render 3D Three.js frame
       currentVisualizer.render(THREE, threeScene, threeCamera, threeRenderer, t, currentVariation.params);
     };
 
@@ -575,8 +870,8 @@
     // Auto-parse URL query parameters (e.g. ?visualizer=calabi_yau_manifold&var=5)
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const vizId = params.get('visualizer') || 'black_hole_gargantua';
-      const varIdx = parseInt(params.get('var') || '0', 10);
+      const vizId = params.get('visualizer') || 'kerr_black_hole_ergosphere';
+      const varIdx = parseInt(params.get('var') || '3', 10);
 
       window.setVisualization(vizId, varIdx, () => {
         window.startRealtimePlayback();
