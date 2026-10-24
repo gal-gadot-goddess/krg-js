@@ -1598,5 +1598,805 @@
     "category": "Cyberpunk & Digital Systems",
     "genre": "cosmic",
     "caption": "🌌 Quantum entanglement on the conformal boundary encoding bulk anti-de Sitter gravity & black hole thermodynamics in Three.js WebGL! Follow @kreggsjs for daily 3D code reels! ⚡🔮\n\n#threejs #webgl #adscft #holography #stringtheory #blackhole #quantumgravity #creativecoding #javascript #reels"
+  },
+  {
+    "id": "pulsar_magnetosphere_polar_cap",
+    "title": "Relativistic Pulsar Magnetosphere & Light Cylinder Beam",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "pulsar_magnetosphere.js",
+    "caption": "⚡ Relativistic Pulsar Magnetosphere with sweeping synchrotron light-cylinder beams and magnetic dipoles in Three.js! Follow @kreggsjs for daily 3D code reels! 🌌🔭\n\n#threejs #webgl #pulsar #neutronstar #astrophysics #relativity #creativecoding #codeart"
+  },
+  {
+    "id": "supermassive_quasar_relativistic_inflow",
+    "title": "Supermassive Quasar Accretion Inflow & High-Z Radiative Torrent",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "quasar_inflow.js",
+    "caption": "🔥 Supermassive Quasar with billion-solar-mass gravitational accretion inflow & radiative feedback in Three.js! Follow @kreggsjs for daily 3D code reels! 🌌⚡\n\n#threejs #webgl #quasar #blackhole #astrophysics #cosmos #creativecoding #javascript"
+  },
+  {
+    "id": "cosmic_reionization_bubble_network",
+    "title": "Epoch of Reionization Strömgren Spheres & Ionization Web",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "reionization_bubbles.js",
+    "caption": "🌌 First stars of the Universe blowing cosmic Strömgren ionization bubbles across neutral hydrogen in Three.js! Follow @kreggsjs for daily 3D code reels! 🔭✨\n\n#threejs #webgl #cosmology #reionization #firststars #astronomy #codeart"
+  },
+  {
+    "id": "binary_neutron_star_kilonova_merger",
+    "title": "Binary Neutron Star Chirp Merger & R-Process Kilonova",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "kilonova_merger.js",
+    "caption": "💥 Binary neutron star gravitational-wave chirp spiral & radioactive gold-forging Kilonova explosion in Three.js! Follow @kreggsjs for daily 3D code reels! 🌌🔥\n\n#threejs #webgl #kilonova #neutronstar #gravitationalwaves #ligo #creativecoding #physics"
+  },
+  {
+    "id": "solar_coronal_mass_ejection_prominence",
+    "title": "Solar Magnetic Helicity Prominence & CME Eruption",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "solar_cme_prominence.js",
+    "caption": "☀️ Twisted solar magnetic flux ropes erupting into an explosive billion-ton Coronal Mass Ejection in Three.js! Follow @kreggsjs for daily 3D code reels! ⚡🔥\n\n#threejs #webgl #solarphysics #sun #cme #plasma #spaceweather #codeart"
+  },
+  {
+    "id": "blazar_superluminal_relativistic_beaming",
+    "title": "Blazar Relativistic Jet & Superluminal Doppler Motion",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "blazar_beaming.js",
+    "caption": "🌌 Supermassive active galactic nucleus Blazar firing its relativistic particle beam directly down our line of sight in Three.js! Follow @kreggsjs! ⚡🔭\n\n#threejs #webgl #blazar #relativity #astrophysics #cosmos #creativecoding #codeart"
+  },
+  {
+    "id": "galactic_habitable_zone_metallicity_spiral",
+    "title": "Milky Way Galactic Habitable Zone & Stellar Metallicity Drift",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "habitable_zone_spiral.js",
+    "caption": "🌌 Galactic Habitable Zone ring spanning 7 to 9 kiloparsecs with life-harboring star systems in Three.js! Follow @kreggsjs for daily 3D code reels! 🪐✨\n\n#threejs #webgl #galaxy #milkyway #habitablezone #astronomy #science #codeart"
+  },
+  {
+    "id": "cosmic_web_dark_energy_filament_tessellation",
+    "title": "Cosmic Web Dark Energy Filaments & Supercluster Nodes",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "cosmic_web_filaments.js",
+    "caption": "🌌 Large-Scale Structure of the Universe: 3D cosmic web filaments, galaxy superclusters & giant cosmic voids in Three.js! Follow @kreggsjs for daily code reels! 🔭🌐\n\n#threejs #webgl #cosmology #cosmicweb #darkmatter #astronomy #mathart #codeart"
+  },
+  {
+    "id": "wolf_rayet_colliding_wind_spiral_pinwheel",
+    "title": "Wolf-Rayet Colliding Winds & Archimedean Dust Pinwheel",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "wolf_rayet_pinwheel.js",
+    "caption": "🌀 Colliding supersonic stellar winds around binary Wolf-Rayet WR 104 carving an Archimedean dust pinwheel in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #wolfrayet #pinwheel #nebula #astronomy #spaceart #codeart"
+  },
+  {
+    "id": "intermediate_mass_black_hole_globular_core",
+    "title": "Globular Cluster Core Collapse & Intermediate-Mass Black Hole",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "globular_imbh_core.js",
+    "caption": "🌌 50,000 stars swirling in gravothermal core collapse around a hidden Intermediate-Mass Black Hole in Three.js! Follow @kreggsjs for daily reels! 🕳️✨\n\n#threejs #webgl #blackhole #globularcluster #astronomy #creativecoding #physics"
+  },
+  {
+    "id": "type_ia_supernova_carbon_detonation_shock",
+    "title": "Type Ia Supernova Thermonuclear Flame Front & Shock Wave",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "supernova_ia_shock.js",
+    "caption": "💥 White dwarf runaway carbon fusion deflagration-to-detonation Type Ia supernova shock wave in Three.js! Follow @kreggsjs for daily reels! 🌌🔥\n\n#threejs #webgl #supernova #astronomy #physics #creativecoding #codeart"
+  },
+  {
+    "id": "active_galactic_nucleus_broad_line_region",
+    "title": "AGN Clumpy Torus & Broad-Line Region Reverberation",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "agn_broad_line.js",
+    "caption": "🌌 Active Galactic Nucleus clumpy molecular torus & relativistic broad-line reverberation clouds in Three.js! Follow @kreggsjs for daily reels! ⚡🕳️\n\n#threejs #webgl #agn #blackhole #galaxy #astronomy #codeart"
+  },
+  {
+    "id": "planetesimal_pebble_accretion_vortex",
+    "title": "Protoplanetary Disk Gas Drag & Pebble Accretion Vortices",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "pebble_accretion.js",
+    "caption": "🪐 Millimeter chondrule pebbles spiraling into anticyclonic pressure vortices to birth protoplanets in Three.js! Follow @kreggsjs for daily reels! 🌌✨\n\n#threejs #webgl #protoplanet #planets #astronomy #physics #codeart"
+  },
+  {
+    "id": "intergalactic_warm_hot_medium_whim_sheet",
+    "title": "Intergalactic Warm-Hot Medium (WHIM) Cosmic Sheets",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "whim_cosmic_sheets.js",
+    "caption": "🌌 The missing baryonic matter of the Universe: million-Kelvin WHIM plasma sheets permeating intergalactic voids in Three.js! Follow @kreggsjs! 🔭✨\n\n#threejs #webgl #astronomy #plasma #cosmology #creativecoding #codeart"
+  },
+  {
+    "id": "microquasar_ss433_precessing_jet_corkscrew",
+    "title": "Microquasar SS 433 Precessing Relativistic Jet Corkscrew",
+    "category": "Astrophysics & Relativity",
+    "genre": "cosmic",
+    "fileName": "ss433_corkscrew.js",
+    "caption": "🌀 Stellar-mass microquasar SS 433 precessing its 0.26c relativistic relativistic jet corkscrew in Three.js! Follow @kreggsjs for daily reels! ⚡🕳️\n\n#threejs #webgl #ss433 #microquasar #relativity #astrophysics #creativecoding #codeart"
+  },
+  {
+    "id": "enneper_minimal_surface_weierstrass",
+    "title": "Enneper Self-Intersecting Minimal Weierstrass Surface",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "enneper_surface.js",
+    "caption": "📐 Enneper's classical self-intersecting minimal surface with zero mean curvature generated via Weierstrass representation in Three.js! Follow @kreggsjs! 🌐✨\n\n#threejs #webgl #geometry #mathart #differentialgeometry #parametric #creativecoding"
+  },
+  {
+    "id": "klein_bottle_4d_rotation_cross_section",
+    "title": "4D Klein Bottle Slicing & Non-Orientable Hyper-Rotation",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "klein_bottle_4d.js",
+    "caption": "🌀 4D Klein Bottle rotating through higher-dimensional hyperplanes without self-intersecting in Three.js! Follow @kreggsjs for daily 3D code reels! 🌐✨\n\n#threejs #webgl #kleinbottle #topology #4d #higherdimensions #mathart #codeart"
+  },
+  {
+    "id": "seifert_surface_trefoil_knot_boundary",
+    "title": "Orientable Genus-1 Seifert Surface & Trefoil Knot Boundary",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "seifert_trefoil.js",
+    "caption": "🪢 Orientable genus-1 Seifert surface bounded by an intricate mathematical (2,3) trefoil knot in Three.js! Follow @kreggsjs for daily reels! 📐✨\n\n#threejs #webgl #knottrajectory #topology #seifert #mathart #codeart #geometry"
+  },
+  {
+    "id": "henneberg_non_orientable_minimal_surface",
+    "title": "Henneberg Non-Orientable Minimal Ruled Möbius Surface",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "henneberg_surface.js",
+    "caption": "📐 The Henneberg minimal surface: a non-orientable ruled minimal surface containing a Möbius strip boundary in Three.js! Follow @kreggsjs! 🌐✨\n\n#threejs #webgl #henneberg #minimalmanifold #geometry #mathart #codeart"
+  },
+  {
+    "id": "kummer_surface_nodal_singularities",
+    "title": "Kummer 16-Nodal Quartic Algebraic Surface",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "kummer_surface.js",
+    "caption": "📐 Kummer quartic algebraic surface with maximum possible 16 nodal conical singularities in Three.js! Follow @kreggsjs for daily code reels! 🌐✨\n\n#threejs #webgl #kummer #algebraicgeometry #singularities #mathart #creativecoding"
+  },
+  {
+    "id": "clebsch_cubic_diagonal_surface_27_lines",
+    "title": "Clebsch Diagonal Cubic Surface & 27 Real Straight Lines",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "clebsch_cubic.js",
+    "caption": "📐 The legendary Clebsch Diagonal Cubic: the unique smooth cubic surface where all 27 lines are completely REAL in Three.js! Follow @kreggsjs! 🌐✨\n\n#threejs #webgl #algebraicgeometry #clebsch #cubicsurface #27lines #mathart #codeart"
+  },
+  {
+    "id": "plucker_conoid_cylindroid_ruled_surface",
+    "title": "Plücker Conoid Double-Line Ruled Cylindroid",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "plucker_conoid.js",
+    "caption": "📐 Plücker conoid ruled surface generated by lines parallel to the xy-plane meeting a directrix axis in Three.js! Follow @kreggsjs for daily reels! 🌐✨\n\n#threejs #webgl #plucker #ruledsurface #geometry #differentialgeometry #mathart"
+  },
+  {
+    "id": "hyperbolic_octahedral_honeycomb_tessellation",
+    "title": "Hyperbolic Octahedral Honeycomb {3,4,3} Poincaré Inversion",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "hyperbolic_honeycomb.js",
+    "caption": "🌌 Non-Euclidean geometry: regular {3,4,3} hyperbolic octahedral honeycomb tessellating the Poincaré ball in Three.js! Follow @kreggsjs for daily reels! 📐✨\n\n#threejs #webgl #hyperbolic #poincare #noneuclidean #geometry #mathart #sacredgeometry"
+  },
+  {
+    "id": "morin_sphere_eversion_halfway_corrugation",
+    "title": "Morin Halfway Sphere Eversion & Smale's Paradox",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "morin_surface.js",
+    "caption": "🌐 Smale's Paradox: turning a sphere inside-out without tearing or creasing: the central Morin surface in Three.js! Follow @kreggsjs for daily reels! 📐✨\n\n#threejs #webgl #topology #morinsurface #sphereeversion #mathart #geometry #codeart"
+  },
+  {
+    "id": "hopf_fibration_quaternion_s3_stereographic",
+    "title": "Hopf Fibration S3 to S2 Quaternion Great Circles",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "hopf_fibration.js",
+    "caption": "🌀 The celebrated Hopf Fibration mapping the 3-sphere S3 to the 2-sphere S2 via nested Villarceau circles in Three.js! Follow @kreggsjs for daily reels! 📐✨\n\n#threejs #webgl #hopffibration #topology #sacredgeometry #mathart #quaternion #codeart"
+  },
+  {
+    "id": "whitney_umbrella_pinch_singularity",
+    "title": "Whitney Umbrella Pinch-Point Ruled Algebraic Singularity",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "whitney_umbrella.js",
+    "caption": "📐 The Whitney Umbrella ruled surface: the prototypical pinch point singularity in differential topology in Three.js! Follow @kreggsjs for daily code reels! 🌐✨\n\n#threejs #webgl #whitneyumbrella #singularity #topology #algebraicgeometry #codeart"
+  },
+  {
+    "id": "cayley_cubic_surface_four_conical_nodes",
+    "title": "Cayley Cubic Surface & 4 Symmetric Conical Singularities",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "cayley_cubic.js",
+    "caption": "📐 The Cayley Cubic: the unique projective cubic surface endowed with the maximum of four ordinary double points in Three.js! Follow @kreggsjs! 🌐✨\n\n#threejs #webgl #cayleycubic #singularity #algebraicgeometry #mathart #codeart"
+  },
+  {
+    "id": "richmond_minimal_family_surface",
+    "title": "Richmond Algebraic Minimal Surface & Planar Ends",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "richmond_minimal.js",
+    "caption": "📐 Richmond's complete algebraic minimal surface with two planar ends and finite total curvature in Three.js! Follow @kreggsjs for daily reels! 🌐✨\n\n#threejs #webgl #richmond #minimalsurface #differentialgeometry #mathart #codeart"
+  },
+  {
+    "id": "clifford_torus_flat_metric_stereographic",
+    "title": "Flat Clifford Torus R4 to R3 Conformal Projection",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "clifford_torus.js",
+    "caption": "📐 The flat Clifford torus in Euclidean 4-space conformally stereographically projected to 3-space in Three.js! Follow @kreggsjs for daily reels! 🌐✨\n\n#threejs #webgl #cliffordtorus #geometry #4d #sacredgeometry #mathart #codeart"
+  },
+  {
+    "id": "gyroid_triply_periodic_minimal_surface",
+    "title": "Schoen Gyroid TPMS Triply Periodic Minimal Labyrinth",
+    "category": "Higher Dimensions & Sacred Geometry",
+    "genre": "geometry",
+    "fileName": "gyroid_tpms.js",
+    "caption": "🌀 Schoen's Gyroid Triply Periodic Minimal Surface (TPMS) weaving an infinitely interconnected labyrinth in Three.js! Follow @kreggsjs for daily reels! 📐✨\n\n#threejs #webgl #gyroid #tpms #minimalsurface #sacredgeometry #mathart #codeart"
+  },
+  {
+    "id": "quark_gluon_plasma_flux_tube_breaking",
+    "title": "Chromo-Electric QCD Flux Tube Snapping & Hadronization",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "qcd_flux_tube.js",
+    "caption": "⚡ Quantum Chromodynamics (QCD) chromo-electric flux tube stretching and string-breaking into quark-antiquark pairs in Three.js! Follow @kreggsjs! 🔬⚛️\n\n#threejs #webgl #quantum #particlephysics #qcd #quarks #physics #codeart"
+  },
+  {
+    "id": "quantum_vacuum_casimir_polder_fluctuation",
+    "title": "Quantum Vacuum Energy & Casimir-Polder Boundary Stress",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "casimir_fluctuation.js",
+    "caption": "⚡ Quantum vacuum zero-point fluctuations excluded between parallel conducting plates generating attractive Casimir force in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #quantumvacuum #casimireffect #zeropointenergy #physics #codeart"
+  },
+  {
+    "id": "neutrino_flavor_oscillation_wavepacket",
+    "title": "PMNS Three-Flavor Neutrino Interference Oscillations",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "neutrino_oscillation.js",
+    "caption": "⚛️ Electron, Muon & Tau neutrino quantum flavor state probability oscillation via the PMNS matrix in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #neutrino #pmns #quantummechanics #particlephysics #codeart"
+  },
+  {
+    "id": "topological_insulator_dirac_cone_spin_helical",
+    "title": "Topological Insulator Dirac Cone & Spin-Momentum Locking",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "dirac_cone_ti.js",
+    "caption": "⚛️ Relativistic massless Dirac fermions with spin-momentum locking on topological insulator surface states in Three.js! Follow @kreggsjs for daily reels! 🔬⚡\n\n#threejs #webgl #topologicalinsulator #diraccone #quantum #spintronics #codeart"
+  },
+  {
+    "id": "feynman_path_integral_quantum_phase_sum",
+    "title": "Feynman Path Integral All-Histories Phase Amplitude Sum",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "feynman_path_integral.js",
+    "caption": "⚛️ Quantum particle exploring every possible path through spacetime simultaneously with Feynman path integral phase interference in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #feynman #pathintegral #quantumphysics #wavefunction #codeart"
+  },
+  {
+    "id": "fractional_quantum_hall_composite_fermion",
+    "title": "Fractional Quantum Hall Effect & Composite Fermion Anyons",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "composite_fermion.js",
+    "caption": "⚛️ Fractional Quantum Hall Effect: electrons binding magnetic flux vortices to form Composite Fermions with fractional anyonic charge in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #quantumhall #compositefermion #anyons #physics #condensedmatter #codeart"
+  },
+  {
+    "id": "andreev_reflection_superconductor_heterostructure",
+    "title": "Andreev Reflection & Superconducting Cooper Pair Conversion",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "andreev_reflection.js",
+    "caption": "⚛️ Normal-metal to superconductor boundary: incident electron converted into a reflected hole while a Cooper pair enters the condensate in Three.js! Follow @kreggsjs! 🔬⚡\n\n#threejs #webgl #superconductivity #andreev #quantum #cooperpairs #codeart"
+  },
+  {
+    "id": "quantum_teleportation_epr_entanglement_swapping",
+    "title": "Quantum Teleportation & EPR Entanglement Swapping",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "teleportation_epr.js",
+    "caption": "⚛️ Quantum state teleportation via Bell State Measurement & non-local EPR pair entanglement swapping in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #quantumteleportation #entanglement #epr #bellstates #physics #codeart"
+  },
+  {
+    "id": "quantum_hall_skyrmion_spin_texture",
+    "title": "Quantum Hall Ferromagnetic Skyrmion Spin Textures",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "hall_skyrmion.js",
+    "caption": "⚛️ Topological Skyrmion spin texture with non-trivial winding number in quantum Hall 2D electron gas in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #skyrmion #quantumhall #spintronics #topology #physics #codeart"
+  },
+  {
+    "id": "polariton_superfluid_quantum_vortex_lattice",
+    "title": "Exciton-Polariton Superfluid & Quantized Vortex Lattice",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "polariton_vortex_lattice.js",
+    "caption": "⚛️ Microcavity exciton-polariton non-equilibrium Bose-Einstein condensate forming an Abrikosov quantum vortex lattice in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #polariton #superfluid #boseeinstein #vortex #quantum #codeart"
+  },
+  {
+    "id": "quantum_cryptography_bb84_bloch_polarization",
+    "title": "Quantum Key Distribution BB84 Polarization States",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "bb84_polarization.js",
+    "caption": "🔐 BB84 Quantum Key Distribution photon polarization conjugate basis states (|0>, |1>, |+>, |->) in Three.js! Follow @kreggsjs for daily reels! ⚛️💻\n\n#threejs #webgl #quantumcomputing #cryptography #bb84 #qkd #cybersecurity #codeart"
+  },
+  {
+    "id": "rydberg_atom_quantum_simulator_blockade",
+    "title": "Rydberg Atom Quantum Simulator & Dipole Blockade Spheres",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "rydberg_blockade.js",
+    "caption": "⚛️ Neutral atom quantum simulator: Rydberg blockade spheres preventing simultaneous double excitation via van der Waals interactions in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #rydberg #quantumcomputing #atoms #quantumsimulator #physics #codeart"
+  },
+  {
+    "id": "chiral_anomaly_weyl_semimetal_fermi_arcs",
+    "title": "Weyl Semimetal Chiral Nodes & Fermi Arc Surface States",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "weyl_fermi_arcs.js",
+    "caption": "⚛️ Topological Weyl semimetal with monopoles of Berry curvature and open Fermi arc surface states in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #weylsemimetal #fermiarc #quantum #topological #physics #codeart"
+  },
+  {
+    "id": "schwinger_pair_production_extreme_laser",
+    "title": "Schwinger Non-Perturbative Vacuum Pair Production",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "schwinger_pairs.js",
+    "caption": "⚡ Critical Schwinger electric field (10^18 V/m) tearing electron-positron pairs directly out of the quantum vacuum in Three.js! Follow @kreggsjs for daily reels! 🔬💥\n\n#threejs #webgl #schwinger #lasers #quantumvacuum #electrodynamics #physics #codeart"
+  },
+  {
+    "id": "quantum_darwinism_pointer_state_decoherence",
+    "title": "Quantum Darwinism Redundant Pointer State Decoherence",
+    "category": "Quantum Mechanics & Biotech",
+    "genre": "quantum",
+    "fileName": "quantum_darwinism.js",
+    "caption": "⚛️ Quantum Darwinism: how classical reality emerges from quantum superpositions through redundant environment recording in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #quantumdarwinism #decoherence #quantum #physics #codeart"
+  },
+  {
+    "id": "ribosome_mrna_translation_polypeptide_chain",
+    "title": "Ribosome 70S Translation & Polypeptide Chain Synthesis",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "ribosome_translation.js",
+    "caption": "🧬 Molecular factory of life: Ribosome translating messenger RNA strand into a folding polypeptide protein helix in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #ribosome #translation #molecularbiology #dna #biophysics #codeart"
+  },
+  {
+    "id": "synaptic_vesicle_snare_complex_fusion",
+    "title": "SNARE Complex Four-Helix Zippering & Vesicle Fusion",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "snare_fusion.js",
+    "caption": "⚡ Synaptic vesicle neurotransmitter release: SNARE four-helix bundle mechanical zippering and membrane fusion pore opening in Three.js! Follow @kreggsjs! 🧠🔬\n\n#threejs #webgl #neuroscience #snare #synapse #biophysics #molecularbiology #codeart"
+  },
+  {
+    "id": "nuclear_pore_complex_fg_nucleoporin_sieve",
+    "title": "Nuclear Pore Eight-Fold Complex & FG-Repeat Hydrophobic Sieve",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "nuclear_pore_sieve.js",
+    "caption": "🧬 Gatekeeper of the cell nucleus: 8-fold symmetric Nuclear Pore Complex with entropic FG-repeat nucleoporin hydrogel sieve in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #nuclearcell #biophysics #nanomachines #cellbiology #codeart"
+  },
+  {
+    "id": "myosin_actin_power_stroke_crossbridge",
+    "title": "Actomyosin Power Stroke & Muscle Lever-Arm Tilting",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "myosin_power_stroke.js",
+    "caption": "💪 Molecular muscle motor: Myosin II head executing a 10 nm mechanical power stroke along the actin thin filament in Three.js! Follow @kreggsjs for daily reels! 🔬⚡\n\n#threejs #webgl #myosin #actin #biophysics #molecularmotors #muscle #codeart"
+  },
+  {
+    "id": "voltage_gated_sodium_channel_activation",
+    "title": "Voltage-Gated Sodium Channel S4 Helix Screw Gate",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "sodium_channel_nav.js",
+    "caption": "⚡ Action potential initiation: Nav1.7 sodium channel four-domain voltage sensor sliding outward in helical screw motion in Three.js! Follow @kreggsjs! 🧠🔬\n\n#threejs #webgl #ionchannels #neuroscience #biophysics #electrophysiology #codeart"
+  },
+  {
+    "id": "microtubule_dynamic_instability_catastrophe",
+    "title": "Microtubule GTP Cap Hydrolysis & Peeling Protofilament Catastrophe",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "microtubule_catastrophe.js",
+    "caption": "🧬 Microtubule dynamic instability: GTP cap loss triggering catastrophic curling and protofilament peeling in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #microtubule #cytoskeleton #biophysics #mitosis #cellbiology #codeart"
+  },
+  {
+    "id": "bacterial_chemotaxis_flagellar_bundle_reversal",
+    "title": "Bacterial Chemotaxis Flagellar Bundle Run-and-Tumble",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "chemotaxis_bundle.js",
+    "caption": "🦠 E. coli chemotaxis: helical flagellar bundle synchronous CCW run switching to CW tumble unraveling in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #bacteria #chemotaxis #flagella #biophysics #microbiology #codeart"
+  },
+  {
+    "id": "chlorophyll_resonance_energy_transfer_fret",
+    "title": "Photosystem II Chlorophyll Förster Resonance Energy Transfer",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "chlorophyll_fret.js",
+    "caption": "🌿 Quantum coherence in photosynthesis: solar exciton dipole-dipole FRET hopping across LHCII chlorophyll networks in Three.js! Follow @kreggsjs for daily reels! ☀️✨\n\n#threejs #webgl #photosynthesis #quantumbiology #fret #chlorophyll #biophysics #codeart"
+  },
+  {
+    "id": "cohesin_dna_loop_extrusion_tad_boundary",
+    "title": "Cohesin Ring SMC Motor & Chromatin Loop Extrusion",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "cohesin_loop_extrusion.js",
+    "caption": "🧬 Cohesin molecular ring motor extruding 3D chromatin loops to form Topologically Associating Domains (TADs) in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #cohesin #genomics #chromatin #dna #biophysics #codeart"
+  },
+  {
+    "id": "proteasome_26s_ubiquitin_substrate_degradation",
+    "title": "26S Proteasome AAA+ Motor & Polyubiquitin Degradation",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "proteasome_26s.js",
+    "caption": "🧬 Cellular recycling machine: 26S Proteasome AAA+ unfoldase threading ubiquitinated substrates into the 20S catalytic barrel in Three.js! Follow @kreggsjs! 🔬⚡\n\n#threejs #webgl #proteasome #ubiquitin #molecularbiology #biophysics #codeart"
+  },
+  {
+    "id": "bacteriorhodopsin_proton_pumping_photocycle",
+    "title": "Bacteriorhodopsin Retinal Photoisomerization Proton Pump",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "bacteriorhodopsin_pump.js",
+    "caption": "☀️ Solar light-driven proton pumping: Bacteriorhodopsin all-trans to 13-cis retinal photoisomerization photocycle in Three.js! Follow @kreggsjs for daily reels! 🔬⚡\n\n#threejs #webgl #bacteriorhodopsin #biophysics #retinal #protonpump #codeart"
+  },
+  {
+    "id": "extracellular_matrix_integrin_talin_focal_adhesion",
+    "title": "Integrin Mechanotransduction & Talin Focal Adhesion Complex",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "focal_adhesion.js",
+    "caption": "⚡ Cellular mechanobiology: Integrin-talin-actin focal adhesion complex transmitting piconewton extracellular tension in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #mechanobiology #integrin #focaladhesion #biophysics #codeart"
+  },
+  {
+    "id": "telomerase_ribonucleoprotein_telomere_capping",
+    "title": "Telomerase Reverse Transcriptase & TTAGGG Telomere Capping",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "telomerase_capping.js",
+    "caption": "🧬 Cellular immortality engine: Telomerase ribonucleoprotein complex elongating G-rich TTAGGG telomeric chromosome caps in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #telomeres #telomerase #genetics #biophysics #aging #codeart"
+  },
+  {
+    "id": "gap_junction_connexon_hexamer_channel",
+    "title": "Connexin-43 Hexameric Hemichannel Gap Junction Pore",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "gap_junction_connexon.js",
+    "caption": "⚡ Direct intercellular communication: Connexin-43 hexameric connexon channels docking between cell membranes in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #connexin #gapjunction #cellbiology #biophysics #nanomachines #codeart"
+  },
+  {
+    "id": "circadian_clock_per_cry_transcriptional_loop",
+    "title": "Circadian Molecular Clockwork & PER-CRY Oscillations",
+    "category": "Organic Physics & Bioluminescence",
+    "genre": "bio",
+    "fileName": "circadian_clock.js",
+    "caption": "⏰ The 24-hour master clock in every cell: CLOCK-BMAL1 activator & PER-CRY negative feedback transcriptional wave in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #circadian #biology #biophysics #chronobiology #codeart"
+  },
+  {
+    "id": "hadley_circulation_multiscale_atmospheric_attractor",
+    "title": "Hadley Atmospheric Circulation & Coriolis Strange Attractor",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "hadley_attractor.js",
+    "caption": "🌪️ Hadley cell tropical atmospheric circulation chaotic flow with Coriolis trade winds in Three.js! Follow @kreggsjs for daily reels! 🌀⚡\n\n#threejs #webgl #chaostheory #strangeattractor #meteorology #hadleycell #codeart"
+  },
+  {
+    "id": "chen_lee_chaotic_system_symmetric_scroll",
+    "title": "Chen-Lee Symmetric Strange Attractor & Invariant Manifold",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "chen_lee_attractor.js",
+    "caption": "🌀 The Chen-Lee 3D chaotic dynamical system with dual symmetric spherical attractor orbits in Three.js! Follow @kreggsjs for daily reels! ⚡📐\n\n#threejs #webgl #chaostheory #chenlee #dynamicalsystems #mathart #codeart"
+  },
+  {
+    "id": "halvorsen_cyclic_symmetric_attractor",
+    "title": "Halvorsen Cyclic Permutation 3D Strange Attractor",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "halvorsen_attractor.js",
+    "caption": "🌀 Perfect ternary cyclic symmetry: the Halvorsen strange attractor with 3 symmetric chaotic lobes in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #halvorsen #chaostheory #mathart #symmetry #codeart"
+  },
+  {
+    "id": "four_wing_hyperchaotic_memristor_attractor",
+    "title": "Four-Wing Memristive Hyperchaotic Attractor",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "four_wing_memristor.js",
+    "caption": "🦋 Memristive hyperchaos: a 4D nonlinear dynamical system producing four distinct phase-space butterfly wings in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #hyperchaos #memristor #fourwing #chaostheory #codeart"
+  },
+  {
+    "id": "arneodo_cascade_chaotic_oscillator",
+    "title": "Arnéodo Homoclinic Orbit Multi-Scale Cascade",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "arneodo_attractor.js",
+    "caption": "🌀 Arnéodo chaotic oscillator: multi-scale period-doubling cascade towards a homoclinic orbit in Three.js! Follow @kreggsjs for daily reels! ⚡📐\n\n#threejs #webgl #arneodo #chaostheory #homoclinic #mathart #codeart"
+  },
+  {
+    "id": "sprott_b_minimal_dissipative_chaotic_flow",
+    "title": "Sprott System B Pure Monomial Quadratic Chaotic Flow",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "sprott_b_attractor.js",
+    "caption": "🌀 Sprott's simplest dissipative chaotic flow with minimal monomial algebraic terms in Three.js! Follow @kreggsjs for daily reels! ⚡📐\n\n#threejs #webgl #sprott #chaostheory #minimalchaos #mathart #codeart"
+  },
+  {
+    "id": "lorenz_84_climatic_monsoon_oscillation",
+    "title": "Lorenz 84 Global Climate & Monsoon Shift Attractor",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "lorenz_84_climate.js",
+    "caption": "🌍 Edward Lorenz's 1984 simplified climate model demonstrating abrupt monsoon shifts and planetary wave resonance in Three.js! Follow @kreggsjs! 🌀✨\n\n#threejs #webgl #lorenz #climatechaos #meteorology #attractor #codeart"
+  },
+  {
+    "id": "thomas_cyclically_symmetric_attractor",
+    "title": "Thomas Labyrinthine Sinuous Chaotic Flow",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "thomas_labyrinth.js",
+    "caption": "🌀 Thomas' cyclically symmetric friction-dissipated strange attractor winding a continuous 3D labyrinth in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #thomasattractor #chaostheory #labyrinth #mathart #codeart"
+  },
+  {
+    "id": "burke_shaw_spherical_envelope_chaos",
+    "title": "Burke-Shaw Bounded Spherical Chaotic Ribbon",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "burke_shaw_envelope.js",
+    "caption": "🌀 Burke-Shaw chaotic attractor: a single continuous trajectory tightly enveloped on an invariant sphere in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #burkeshaw #chaostheory #dynamicalsystems #mathart #codeart"
+  },
+  {
+    "id": "dadras_momeni_five_term_chaotic_attractor",
+    "title": "Dadras-Momeni Five-Term Autonomous Chaotic Dynamo",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "dadras_momeni.js",
+    "caption": "🌀 Dadras-Momeni autonomous chaotic dynamo system: multi-scroll orbits winding through interconnected phase-space funnels in Three.js! Follow @kreggsjs! ⚡✨\n\n#threejs #webgl #dadras #chaostheory #multiscroll #mathart #codeart"
+  },
+  {
+    "id": "yu_wang_four_wing_coupled_attractor",
+    "title": "Yu-Wang Coupled Dual-Lyapunov Hyperchaotic Wings",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "yu_wang_attractor.js",
+    "caption": "🦋 Yu-Wang hyperchaotic system featuring two positive Lyapunov exponents and four symmetrical phase lobes in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #yuwang #hyperchaos #butterflywings #mathart #codeart"
+  },
+  {
+    "id": "wang_sun_chaotic_bistable_switch",
+    "title": "Wang-Sun Bistable Chaotic Gyroscopic System",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "wang_sun_attractor.js",
+    "caption": "🌀 Wang-Sun bistable chaotic gyroscope alternating between two symmetric toroidal attractors in Three.js! Follow @kreggsjs for daily reels! ⚡📐\n\n#threejs #webgl #wangsun #bistable #chaostheory #gyroscope #mathart #codeart"
+  },
+  {
+    "id": "rayleigh_benard_turbulent_convection_rolls",
+    "title": "Rayleigh-Bénard Thermal Convective Roll Plumes",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "rayleigh_benard_rolls.js",
+    "caption": "🔥 Thermal buoyancy vs viscosity: Rayleigh-Bénard counter-rotating convection rolls and chaotic thermal plumes in Three.js! Follow @kreggsjs for daily reels! 🌀✨\n\n#threejs #webgl #convection #rayleighbenard #fluidmechanics #chaostheory #codeart"
+  },
+  {
+    "id": "belousov_zhabotinsky_3d_scroll_wave_filament",
+    "title": "Belousov-Zhabotinsky 3D Chemical Scroll Wave Filament",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "bz_scroll_wave.js",
+    "caption": "🌀 Chemical wave turbulence: Belousov-Zhabotinsky reaction-diffusion scroll rings twisting in 3D solution in Three.js! Follow @kreggsjs for daily reels! 🧪✨\n\n#threejs #webgl #belousovzhabotinsky #chemicalreaction #scrollwave #chaos #codeart"
+  },
+  {
+    "id": "turing_reaction_diffusion_morphogenesis_labyrinth",
+    "title": "Turing Reaction-Diffusion Morphogenesis Labyrinth",
+    "category": "Chaos Theory & Attractors",
+    "genre": "chaos",
+    "fileName": "turing_morphogenesis.js",
+    "caption": "🐆 Alan Turing's mathematical morphogenesis: activator-inhibitor chemical reaction-diffusion creating self-organizing skin patterns in Three.js! Follow @kreggsjs! 📐✨\n\n#threejs #webgl #alanturing #morphogenesis #reactiondiffusion #mathart #codeart"
+  },
+  {
+    "id": "tokamak_magnetic_reconnection_plasma_island",
+    "title": "Tokamak Magnetic Reconnection & Tearing Mode Island",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "tokamak_reconnection.js",
+    "caption": "⚡ Fusion reactor plasma physics: Magnetic flux reconnection forming tearing mode magnetic islands in a tokamak torus in Three.js! Follow @kreggsjs! 🔬🔥\n\n#threejs #webgl #tokamak #fusion #plasma #magneticreconnection #physics #codeart"
+  },
+  {
+    "id": "richtmyer_meshkov_shock_interface_instability",
+    "title": "Richtmyer-Meshkov Shock Wave Interface Instability Spikes",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "richtmyer_meshkov.js",
+    "caption": "💥 Shockwave-driven vorticity generation: Richtmyer-Meshkov baroclinic instability growing spikes and bubble fingers in Three.js! Follow @kreggsjs! 🔬🔥\n\n#threejs #webgl #fluidmechanics #shockwave #richtmyermeshkov #turbulence #codeart"
+  },
+  {
+    "id": "von_karman_coherent_swirling_wake_vorticity",
+    "title": "Von Kármán Coherent Vortex Street & Swirling Wake",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "von_karman_wake.js",
+    "caption": "🌊 Periodic Strouhal shedding: alternating clockwise and counter-clockwise swirling vortices past a cylinder in Three.js! Follow @kreggsjs for daily reels! 🌀✨\n\n#threejs #webgl #vonkarman #vortexstreet #fluidmechanics #cfd #aerodynamics #codeart"
+  },
+  {
+    "id": "taylor_green_decaying_turbulence_energy_cascade",
+    "title": "Taylor-Green Vortex Decaying Turbulence Energy Cascade",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "taylor_green_vortex.js",
+    "caption": "🌀 Kolmogorov -5/3 energy cascade: Taylor-Green vortex sheet stretching, roll-up and turbulent dissipation in Three.js! Follow @kreggsjs for daily reels! 🌊✨\n\n#threejs #webgl #turbulence #taylorgreen #fluidmechanics #cfd #navierstokes #codeart"
+  },
+  {
+    "id": "mhd_blast_wave_magnetic_shock_front",
+    "title": "Magnetohydrodynamic (MHD) Blast Wave Shock Front",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "mhd_blast_wave.js",
+    "caption": "💥 Super-Alfvénic explosion expanding into a magnetized plasma medium: non-spherical MHD blast wave shock in Three.js! Follow @kreggsjs for daily reels! ⚡🔥\n\n#threejs #webgl #plasma #mhd #shockwave #astrophysics #physics #codeart"
+  },
+  {
+    "id": "supercritical_fluid_opalescence_cluster",
+    "title": "Supercritical Fluid Critical Opalescence & Density Clusters",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "critical_opalescence.js",
+    "caption": "🧪 Critical point phase transition: liquid-gas distinction vanishes into giant optical opalescence density fluctuations in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #supercritical #thermodynamics #opalescence #physics #codeart"
+  },
+  {
+    "id": "cavitation_bubble_collapse_water_hammer_jet",
+    "title": "Ultrasonic Cavitation Collapse & Water-Hammer Microjet",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "cavitation_microjet.js",
+    "caption": "💥 Rayleigh-Plesset cavitation bubble collapse forming a high-speed supersonic water-hammer microjet in Three.js! Follow @kreggsjs for daily reels! 🌊⚡\n\n#threejs #webgl #cavitation #fluidmechanics #acoustics #microjet #physics #codeart"
+  },
+  {
+    "id": "prandtl_meyer_supersonic_expansion_fan",
+    "title": "Prandtl-Meyer Supersonic Expansion Fan & Mach Waves",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "prandtl_meyer_fan.js",
+    "caption": "✈️ Aerodynamics of supersonic flight: Prandtl-Meyer isentropic expansion fan turning gas around a convex corner in Three.js! Follow @kreggsjs for daily reels! ⚡🌬️\n\n#threejs #webgl #supersonic #aerodynamics #prandtlmeyer #mach #fluidmechanics #codeart"
+  },
+  {
+    "id": "atmospheric_gravity_wave_kelvin_wake",
+    "title": "Atmospheric Internal Gravity Waves & Mountain Kelvin Wake",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "gravity_wave_wake.js",
+    "caption": "🏔️ Buoyancy-driven internal gravity waves rippling through stratified atmosphere behind a mountain peak in Three.js! Follow @kreggsjs for daily reels! ☁️✨\n\n#threejs #webgl #gravitywaves #meteorology #fluidmechanics #atmospheric #codeart"
+  },
+  {
+    "id": "standing_acoustofluidic_radiation_trap",
+    "title": "Standing Acoustofluidic Radiation Force Particle Trapping",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "acoustofluidic_trap.js",
+    "caption": "🔊 Acoustic radiation force trapping microparticles in pressure nodal planes of a standing acoustic ultrasound wave in Three.js! Follow @kreggsjs! 🔬✨\n\n#threejs #webgl #acoustofluidics #ultrasound #microfluidics #physics #codeart"
+  },
+  {
+    "id": "ferrofluid_rosensweig_normal_field_spikes",
+    "title": "Ferrofluid Rosensweig Normal-Field Instability Spikes",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "ferrofluid_rosensweig.js",
+    "caption": "🧲 Superparamagnetic liquid forming self-organizing Rosensweig conical spike arrays in magnetic fields in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #ferrofluid #magnetism #rosensweig #physics #fluiddynamics #codeart"
+  },
+  {
+    "id": "leidenfrost_droplet_star_oscillation",
+    "title": "Leidenfrost Vapor Cushion & Droplet Star-Mode Oscillations",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "leidenfrost_star.js",
+    "caption": "💧 Droplet levitating friction-free on its own insulating vapor cushion vibrating in standing azimuthal star modes in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #leidenfrost #fluiddynamics #physics #droplet #codeart"
+  },
+  {
+    "id": "saffman_taylor_viscous_fingering_interface",
+    "title": "Saffman-Taylor Viscous Fingering Instability Tree",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "saffman_taylor_tree.js",
+    "caption": "🌲 Less viscous fluid displacing more viscous fluid in a Hele-Shaw cell: Saffman-Taylor fractal viscous fingering in Three.js! Follow @kreggsjs for daily reels! 🌊✨\n\n#threejs #webgl #viscousfingering #saffmantaylor #fractal #fluiddynamics #codeart"
+  },
+  {
+    "id": "marangoni_surface_tension_convection_cells",
+    "title": "Marangoni Thermal Surface Tension Convection Hexagons",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "marangoni_convection.js",
+    "caption": "🍯 Thermocapillary Marangoni effect: surface tension gradients driving hexagonal Bénard convection cells in Three.js! Follow @kreggsjs for daily reels! 🔬✨\n\n#threejs #webgl #marangoni #surfacetension #convection #fluidmechanics #codeart"
+  },
+  {
+    "id": "oblique_shock_reflection_mach_stem",
+    "title": "Supersonic Oblique Shock Reflection & Mach Stem Foot",
+    "category": "Fluid Dynamics & Plasma",
+    "genre": "plasma",
+    "fileName": "mach_stem_reflection.js",
+    "caption": "✈️ Supersonic gas dynamics: transition from regular oblique shock reflection to irregular Mach reflection with triple point in Three.js! Follow @kreggsjs for daily reels! ⚡🌬️\n\n#threejs #webgl #obliqueshock #machstem #aerodynamics #supersonic #codeart"
+  },
+  {
+    "id": "quantum_fourier_transform_phase_lattice",
+    "title": "Quantum Fourier Transform Unitary Phase Rotation Lattice",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "qft_phase_lattice.js",
+    "caption": "💻 Quantum algorithm core: Quantum Fourier Transform unitary controlled-phase rotation cascade in Three.js! Follow @kreggsjs for daily reels! ⚡⚛️\n\n#threejs #webgl #qft #quantumcomputing #shorsalgorithm #cyberpunk #codeart"
+  },
+  {
+    "id": "neural_synaptic_plasticity_stdp_hebbian_network",
+    "title": "Spike-Timing-Dependent Plasticity (STDP) Synaptic Graph",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "stdp_neural_network.js",
+    "caption": "🧠 Neuromorphic computing: Spike-Timing-Dependent Plasticity (STDP) Hebbian rewiring and dendritic spine growth in Three.js! Follow @kreggsjs for daily reels! ⚡💻\n\n#threejs #webgl #neuralnetworks #neuromorphic #neuroscience #ai #stdp #codeart"
+  },
+  {
+    "id": "hyperbolic_poincare_embedding_knowledge_graph",
+    "title": "Poincaré Disk Hyperbolic Embedding & Knowledge Graph Hierarchy",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "poincare_knowledge_graph.js",
+    "caption": "🌐 Machine learning representation: hierarchical knowledge graph embedded into continuous negative-curvature Poincaré disk in Three.js! Follow @kreggsjs for daily reels! ⚡✨\n\n#threejs #webgl #machinelearning #hyperbolic #poincare #graphneuralnetwork #ai #codeart"
+  },
+  {
+    "id": "quantum_error_correction_steane_7_qubit_code",
+    "title": "Steane [[7,1,3]] Quantum Error Correction Stabilizer Polytope",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "steane_qec.js",
+    "caption": "🔐 Fault-tolerant quantum computing: Steane [[7,1,3]] code measuring X & Z stabilizer syndromic parity operators in Three.js! Follow @kreggsjs for daily reels! ⚛️💻\n\n#threejs #webgl #quantumcomputing #qec #steanecode #quantumerrorcorrection #codeart"
+  },
+  {
+    "id": "tessellated_octree_sparse_voxel_octree_svo",
+    "title": "Sparse Voxel Octree (SVO) Hierarchical Ray-Traced Voxels",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "svo_voxel_hive.js",
+    "caption": "🧊 Next-gen real-time ray tracing: Sparse Voxel Octree (SVO) 3D spatial partitioning and hierarchical leaf voxel rendering in Three.js! Follow @kreggsjs! ⚡💻\n\n#threejs #webgl #voxels #octree #raytracing #graphics #gamedev #codeart"
+  },
+  {
+    "id": "reinforcement_learning_policy_gradient_manifold",
+    "title": "Reinforcement Learning Policy Gradient Loss Surface",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "policy_gradient_manifold.js",
+    "caption": "🤖 Deep Reinforcement Learning: PPO clipped surrogate objective policy gradient loss landscape optimization in Three.js! Follow @kreggsjs for daily reels! ⚡💻\n\n#threejs #webgl #reinforcementlearning #ai #machinelearning #policygradient #codeart"
+  },
+  {
+    "id": "topological_quantum_majorana_braid_knot",
+    "title": "Non-Abelian Anyon Worldline Majorana Quantum Braiding",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "majorana_braid.js",
+    "caption": "⚛️ Fault-tolerant topological quantum computation: non-Abelian anyon worldline braiding operations in 2+1 spacetime in Three.js! Follow @kreggsjs! ⚡💻\n\n#threejs #webgl #majorana #quantumcomputing #anyons #braiding #topological #codeart"
+  },
+  {
+    "id": "cellular_automata_3d_conway_glider_stream",
+    "title": "3D Cellular Automata Conway Glider Gun & Collision Crystalline Stream",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "conway_3d_glider.js",
+    "caption": "👾 Emergent artificial life: 3D Conway cellular automata glider streams and crystalline collisions in Three.js! Follow @kreggsjs for daily reels! ⚡💻\n\n#threejs #webgl #cellularautomata #gameoflife #artificiallife #cyberpunk #mathart #codeart"
+  },
+  {
+    "id": "transformer_self_attention_high_dim_tensor",
+    "title": "Transformer Multi-Head Self-Attention Hypergraph",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "transformer_attention.js",
+    "caption": "🤖 The architecture driving modern AI: Transformer scaled dot-product multi-head self-attention attention heads in Three.js! Follow @kreggsjs for daily reels! ⚡💻\n\n#threejs #webgl #transformer #llm #selfattention #ai #machinelearning #codeart"
+  },
+  {
+    "id": "quantum_entangled_w_state_tripartite_sphere",
+    "title": "Tripartite Quantum Entangled W-State Bloch Polytope",
+    "category": "Cyberpunk & Digital Systems",
+    "genre": "cyber",
+    "fileName": "w_state_entanglement.js",
+    "caption": "⚛️ Genuine tripartite quantum entanglement: the maximally robust W-State (|001> + |010> + |100>)/sqrt(3) in Three.js! Follow @kreggsjs for daily reels! ⚡💻\n\n#threejs #webgl #wstate #quantum #entanglement #quantumcomputing #physics #codeart"
   }
 ]

@@ -37,5 +37,5 @@ console.log(`========================================`);
 if (failCount > 0) {
   process.exit(1);
 } else {
-  console.log(`All 200 visualizers validated successfully!`);
+  console.log(`All ${catalog.length} visualizers validated successfully!`);
 }

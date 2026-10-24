@@ -1,0 +1,105 @@
+// visualizers/quantum_entangled_w_state_tripartite_sphere.js
+// Tripartite Quantum Entangled W-State Bloch Polytope
+// Generated for 3D Three.js 60 FPS Cinematic Reels Suite
+
+(function(root, factory) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.VISUALIZERS = root.VISUALIZERS || {};
+    root.VISUALIZERS.quantum_entangled_w_state_tripartite_sphere = factory();
+  }
+})(typeof self !== 'undefined' ? self : this, function() {
+
+  return {
+    id: "quantum_entangled_w_state_tripartite_sphere",
+    title: "Tripartite Quantum Entangled W-State Bloch Polytope",
+    fileName: "w_state_entanglement.js",
+    category: "Cyberpunk & Digital Systems",
+    genre: "cyber",
+    caption: "\u269b\ufe0f Genuine tripartite quantum entanglement: the maximally robust W-State (|001> + |010> + |100>)/sqrt(3) in Three.js! Follow @kreggsjs for daily reels! \u26a1\ud83d\udcbb\n\n#threejs #webgl #wstate #quantum #entanglement #quantumcomputing #physics #codeart",
+    
+    displayCode: "// Tripartite W-State Superposition\nfunction wState() {\n  // |W> = 1/sqrt(3) * ( |100> + |010> + |001> )\n  return 1.0 / Math.sqrt(3.0);\n}",
+
+    defaultParams: {
+    "primaryColor": [
+        0.4,
+        0.95,
+        0.85
+    ],
+    "secondaryColor": [
+        0.95,
+        0.35,
+        0.75
+    ],
+    "polyRadius": 5.8
+},
+
+    init: function(THREE, scene, camera, renderer, params) {
+      params = Object.assign({}, this.defaultParams, params || {});
+
+      // Clear existing objects
+      while (scene.children.length > 0) {
+        const obj = scene.children[0];
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+          else obj.material.dispose();
+        }
+        scene.remove(obj);
+      }
+
+      // Camera base config
+      camera.fov = 50;
+      camera.aspect = 1080 / 1920;
+      camera.near = 0.1;
+      camera.far = 1000;
+      camera.updateProjectionMatrix();
+
+      const group = new THREE.Group();
+      scene.add(group);
+
+      const c1 = new THREE.Color(params.primaryColor[0], params.primaryColor[1], params.primaryColor[2]);
+      const c2 = new THREE.Color(params.secondaryColor[0], params.secondaryColor[1], params.secondaryColor[2]);
+
+      // 3 Entangled Vertex Nodes
+      for (let i = 0; i < 3; i++) {
+        const u = (i / 3) * Math.PI * 2;
+        const q = new THREE.Mesh(new THREE.SphereGeometry(1.0, 24, 24), new THREE.MeshBasicMaterial({ color: c1 }));
+        q.position.set(Math.cos(u) * params.polyRadius, (i === 0 ? 2 : -1.5), Math.sin(u) * params.polyRadius);
+        group.add(q);
+      }
+
+      // 20,000 Non-Local Tripartite Entanglement Particles
+      const pCount = 20000;
+      const pPos = new Float32Array(pCount * 3);
+      for (let i = 0; i < pCount; i++) {
+        const th = Math.random() * Math.PI * 2;
+        const ph = Math.acos(2 * Math.random() - 1);
+        const r = params.polyRadius * (0.8 + Math.random() * 0.4);
+        pPos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+        pPos[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th);
+        pPos[i * 3 + 2] = r * Math.cos(ph);
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      group.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ size: 0.22, color: c2, transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending })));
+
+      scene.userData = { group, params };
+    },
+
+    render: function(THREE, scene, camera, renderer, t, params) {
+      const data = scene.userData;
+      if (!data) return;
+
+      data.group.rotation.x = t * 0.35;
+      data.group.rotation.y = t * 0.45;
+      camera.position.x = Math.sin(t * 0.25) * 19;
+      camera.position.z = Math.cos(t * 0.25) * 19;
+      camera.position.y = 5 + Math.sin(t * 0.2) * 3;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+    }
+  };
+});
