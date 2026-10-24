@@ -57,7 +57,7 @@ def generate_visualizer_js(viz):
 
       // Camera base config
       camera.fov = 50;
-      camera.aspect = 984 / 784;
+      camera.aspect = 1080 / 1920;
       camera.near = 0.1;
       camera.far = 1000;
       camera.updateProjectionMatrix();
