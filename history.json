@@ -2650,5 +2650,35 @@
       "shorts"
     ],
     "description": "\u26a1 Procedural 3D WebGL Visualization: Colliding Spiral Galaxies rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
+  },
+  {
+    "visualizer_id": "cosmic_web_filaments",
+    "variation_index": 0,
+    "title": "Mind-Blowing Cosmic Web & Dark Matter (Three.js 60 FPS) #Shorts",
+    "suggested_titles": [
+      "Mind-Blowing Cosmic Web & Dark Matter in JavaScript #Shorts",
+      "Watch Three.js Render This Cosmic Web & Dark Matter Live! #CodeArt",
+      "Can You Code This in Three.js? Cosmic Web & Dark Matter #WebDev"
+    ],
+    "category": "Science & Technology",
+    "duration_sec": 12,
+    "resolution": "1080x1920 (9:16 Full-Screen)",
+    "fps": 60,
+    "video_file": "reel_cosmic_web_filaments_var_1.mp4",
+    "preview_image": "reel_cosmic_web_filaments_var_1_preview.png",
+    "tags": [
+      "threejs",
+      "webgl",
+      "javascript",
+      "creativecoding",
+      "codeart",
+      "html5",
+      "programming",
+      "frontend",
+      "developer",
+      "reels",
+      "shorts"
+    ],
+    "description": "\u26a1 Procedural 3D WebGL Visualization: Cosmic Web & Dark Matter rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
   }
 ]
