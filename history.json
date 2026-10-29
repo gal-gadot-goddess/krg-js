@@ -2950,5 +2950,35 @@
       "shorts"
     ],
     "description": "\u26a1 Procedural 3D WebGL Visualization: Binary Neutron Star Merger rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
+  },
+  {
+    "visualizer_id": "hopf_fibration_torus",
+    "variation_index": 0,
+    "title": "Mind-Blowing Hopf Fibration & Villarceau Circles (Three.js 60 FPS) #Shorts",
+    "suggested_titles": [
+      "Mind-Blowing Hopf Fibration & Villarceau Circles in JavaScript #Shorts",
+      "Watch Three.js Render This Hopf Fibration & Villarceau Circles Live! #CodeArt",
+      "Can You Code This in Three.js? Hopf Fibration & Villarceau Circles #WebDev"
+    ],
+    "category": "Science & Technology",
+    "duration_sec": 12,
+    "resolution": "1080x1920 (9:16 Full-Screen)",
+    "fps": 60,
+    "video_file": "reel_hopf_fibration_torus_var_1.mp4",
+    "preview_image": "reel_hopf_fibration_torus_var_1_preview.png",
+    "tags": [
+      "threejs",
+      "webgl",
+      "javascript",
+      "creativecoding",
+      "codeart",
+      "html5",
+      "programming",
+      "frontend",
+      "developer",
+      "reels",
+      "shorts"
+    ],
+    "description": "\u26a1 Procedural 3D WebGL Visualization: Hopf Fibration & Villarceau Circles rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
   }
 ]
