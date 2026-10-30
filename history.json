@@ -3070,5 +3070,35 @@
       "shorts"
     ],
     "description": "\u26a1 Procedural 3D WebGL Visualization: Metatron's Sacred Cube 3D rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
+  },
+  {
+    "visualizer_id": "polychoron_120_cell",
+    "variation_index": 0,
+    "title": "Mind-Blowing 120-Cell 4D Polychoron (Three.js 60 FPS) #Shorts",
+    "suggested_titles": [
+      "Mind-Blowing 120-Cell 4D Polychoron in JavaScript #Shorts",
+      "Watch Three.js Render This 120-Cell 4D Polychoron Live! #CodeArt",
+      "Can You Code This in Three.js? 120-Cell 4D Polychoron #WebDev"
+    ],
+    "category": "Science & Technology",
+    "duration_sec": 12,
+    "resolution": "1080x1920 (9:16 Full-Screen)",
+    "fps": 60,
+    "video_file": "reel_polychoron_120_cell_var_1.mp4",
+    "preview_image": "reel_polychoron_120_cell_var_1_preview.png",
+    "tags": [
+      "threejs",
+      "webgl",
+      "javascript",
+      "creativecoding",
+      "codeart",
+      "html5",
+      "programming",
+      "frontend",
+      "developer",
+      "reels",
+      "shorts"
+    ],
+    "description": "\u26a1 Procedural 3D WebGL Visualization: 120-Cell 4D Polychoron rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
   }
 ]
