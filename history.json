@@ -4420,5 +4420,35 @@
       "shorts"
     ],
     "description": "\u26a1 Procedural 3D WebGL Visualization: Dragonfly Wing Aerodynamics rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
+  },
+  {
+    "visualizer_id": "deep_sea_siphonophore_colony",
+    "variation_index": 0,
+    "title": "Mind-Blowing Deep-Sea Siphonophore Chain (Three.js 60 FPS) #Shorts",
+    "suggested_titles": [
+      "Mind-Blowing Deep-Sea Siphonophore Chain in JavaScript #Shorts",
+      "Watch Three.js Render This Deep-Sea Siphonophore Chain Live! #CodeArt",
+      "Can You Code This in Three.js? Deep-Sea Siphonophore Chain #WebDev"
+    ],
+    "category": "Science & Technology",
+    "duration_sec": 12,
+    "resolution": "1080x1920 (9:16 Full-Screen)",
+    "fps": 60,
+    "video_file": "reel_deep_sea_siphonophore_colony_var_1.mp4",
+    "preview_image": "reel_deep_sea_siphonophore_colony_var_1_preview.png",
+    "tags": [
+      "threejs",
+      "webgl",
+      "javascript",
+      "creativecoding",
+      "codeart",
+      "html5",
+      "programming",
+      "frontend",
+      "developer",
+      "reels",
+      "shorts"
+    ],
+    "description": "\u26a1 Procedural 3D WebGL Visualization: Deep-Sea Siphonophore Chain rendered live at 60 FPS using Three.js and JavaScript!\n\n\ud83d\udc68\u200d\ud83d\udcbb Source Code & Visual Algorithms available in the project.\n\u2728 Follow @kreggsjs for daily 3D algorithmic code art reels.\n\n#threejs #webgl #javascript #creativecoding #codeart #developer #mathart #reels #shorts"
   }
 ]
